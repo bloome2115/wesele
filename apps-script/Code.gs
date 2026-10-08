@@ -8,13 +8,13 @@
  * potem sprawdź …/exec?action=rsvpVersion (musi pokazać aktualne RSVP_VERSION).
  */
 
-const RSVP_VERSION = '2026-10-07';
+const RSVP_VERSION = '2026-10-08b';
 const SHEET = 'Goście';
 const HEADERS = ['ID', 'Zaproszenie', 'Imię', 'Nazwisko', 'Typ', 'Obecność', 'Menu', 'Alergie',
-  'Transport', 'Skąd/dokąd', 'Nocleg', 'Wiek dziecka', 'Uwagi', 'Wypełnił(a)', 'Ostatnia zmiana'];
-const TYPES = ['Dorosły', 'Dziecko', 'Osoba towarzysząca'];
+  'Transport', 'Skąd/dokąd', 'Nocleg', 'Uwagi', 'Wypełnił(a)', 'Ostatnia zmiana'];
+const TYPES = ['Dorosły', 'Osoba towarzysząca']; // bez dzieci (decyzja 08.10.2026)
 const ANSWER_COLS = { attending: 'Obecność', menu: 'Menu', allergies: 'Alergie', transport: 'Transport',
-  from: 'Skąd/dokąd', lodging: 'Nocleg', childAge: 'Wiek dziecka', notes: 'Uwagi' };
+  from: 'Skąd/dokąd', lodging: 'Nocleg', notes: 'Uwagi' };
 
 function setup() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -29,10 +29,9 @@ function setup() {
     // Przykładowe wiersze — zastąpcie je swoją listą gości.
     // Osoby z jednego zaproszenia mają TEN SAM numer w kolumnie "Zaproszenie".
     // Osoba towarzysząca bez znanego imienia: zostawcie Imię i Nazwisko puste, Typ = "Osoba towarzysząca".
-    sh.getRange(2, 2, 5, 4).setValues([
+    sh.getRange(2, 2, 4, 4).setValues([
       ['1', 'Anna', 'Kowalska', 'Dorosły'],
       ['1', 'Piotr', 'Kowalski', 'Dorosły'],
-      ['1', 'Ola', 'Kowalska', 'Dziecko'],
       ['2', 'Jan', 'Nowak', 'Dorosły'],
       ['2', '', '', 'Osoba towarzysząca'],
     ]);
@@ -45,25 +44,41 @@ function setup() {
   let sum = ss.getSheetByName('Podsumowanie');
   if (!sum) sum = ss.insertSheet('Podsumowanie');
   const g = "'" + SHEET + "'!";
-  sum.getRange('A1:B12').setValues([
-    ['Zaproszonych osób', '=COUNTA(' + g + 'B2:B)'],
-    ['Odpowiedzi', '=COUNTA(' + g + 'F2:F)'],
-    ['Będzie', '=COUNTIF(' + g + 'F2:F,"Tak")'],
-    ['Nie będzie', '=COUNTIF(' + g + 'F2:F,"Nie")'],
+  const S = argSeparator_(sum); // "," albo ";" — zależnie od ustawień regionalnych arkusza
+  const f = (name, ...args) => '=' + name + '(' + args.join(S) + ')';
+  const rows = [
+    ['Zaproszonych osób', f('COUNTA', g + 'B2:B')],
+    ['Odpowiedzi', f('COUNTA', g + 'F2:F')],
+    ['Będzie', f('COUNTIF', g + 'F2:F', '"Tak"')],
+    ['Nie będzie', f('COUNTIF', g + 'F2:F', '"Nie"')],
     ['Brak odpowiedzi', '=B1-B2'],
-    ['Menu tradycyjne', '=COUNTIFS(' + g + 'F2:F,"Tak",' + g + 'G2:G,"Tradycyjne")'],
-    ['Menu wegetariańskie', '=COUNTIFS(' + g + 'F2:F,"Tak",' + g + 'G2:G,"Wegetariańskie")'],
-    ['Menu wegańskie', '=COUNTIFS(' + g + 'F2:F,"Tak",' + g + 'G2:G,"Wegańskie")'],
-    ['Menu dziecięce', '=COUNTIFS(' + g + 'F2:F,"Tak",' + g + 'G2:G,"Menu dziecięce")'],
-    ['Potrzebny transport', '=COUNTIFS(' + g + 'F2:F,"Tak",' + g + 'I2:I,"<>Nie potrzebuję",' + g + 'I2:I,"<>")'],
-    ['Potrzebny nocleg', '=COUNTIFS(' + g + 'F2:F,"Tak",' + g + 'K2:K,"Tak, potrzebuję noclegu")'],
-    ['Zgłoszone alergie', '=COUNTIFS(' + g + 'F2:F,"Tak",' + g + 'H2:H,"<>")'],
-  ]);
-  sum.getRange('A1:A12').setFontWeight('bold');
+    ['Menu tradycyjne', f('COUNTIFS', g + 'F2:F', '"Tak"', g + 'G2:G', '"Tradycyjne"')],
+    ['Menu wegetariańskie', f('COUNTIFS', g + 'F2:F', '"Tak"', g + 'G2:G', '"Wegetariańskie"')],
+    ['Menu wegańskie', f('COUNTIFS', g + 'F2:F', '"Tak"', g + 'G2:G', '"Wegańskie"')],
+    ['Potrzebny transport', f('COUNTIFS', g + 'F2:F', '"Tak"', g + 'I2:I', '"<>Nie potrzebuję"', g + 'I2:I', '"<>"')],
+    ['Potrzebny nocleg', f('COUNTIFS', g + 'F2:F', '"Tak"', g + 'K2:K', '"Tak, potrzebuję noclegu"')],
+    ['Zgłoszone alergie', f('COUNTIFS', g + 'F2:F', '"Tak"', g + 'H2:H', '"<>"')],
+  ];
+  // Pułapka: separator argumentów w formułach zależy od ustawień regionalnych arkusza
+  // (PL: ";"), także przy setFormulas(). argSeparator_() sprawdza go na próbnej formule.
+  sum.clear();
+  sum.getRange(1, 1, rows.length, 1).setValues(rows.map(r => [r[0]])).setFontWeight('bold');
+  sum.getRange(1, 2, rows.length, 1).setFormulas(rows.map(r => [r[1]]));
+  Logger.log('Separator formuł: "' + S + '" (locale: ' + ss.getSpreadsheetLocale() + ')');
+  const empty = ss.getSheetByName('Arkusz1') || ss.getSheetByName('Sheet1');
+  if (empty && empty.getLastRow() === 0) ss.deleteSheet(empty);
   sum.autoResizeColumns(1, 2);
 }
 
 /* ---------- helpers ---------- */
+function argSeparator_(sheet) {
+  const cell = sheet.getRange('Z1');
+  cell.setFormula('=SUM(1,1)');
+  SpreadsheetApp.flush();
+  const ok = cell.getValue() === 2;
+  cell.clear();
+  return ok ? ',' : ';';
+}
 function norm_(s) {
   return String(s || '').toLowerCase().replace(/ł/g, 'l').normalize('NFD').replace(/[̀-ͯ]/g, '')
     .replace(/[^a-z ]/g, ' ').replace(/\s+/g, ' ').trim();

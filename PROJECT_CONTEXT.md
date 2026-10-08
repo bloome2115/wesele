@@ -1,6 +1,6 @@
 # PROJECT_CONTEXT — Strona na Wesele (Daniel & Zuzia)
 
-**Wersja 1 — 07.10.2026**
+**Wersja 1.1 — 08.10.2026**
 
 ## 1. Opis projektu
 Strona dla zaproszonych gości: informacje o ślubie i weselu + potwierdzenie obecności (RSVP) z danymi o transporcie, noclegu, diecie, osobach towarzyszących i dzieciach.
@@ -54,7 +54,7 @@ Pusty `CONFIG.scriptUrl` = tryb podglądu z przykładowymi gośćmi (nic nie zap
 ## 6. Funkcjonalności — RSVP
 - Gość wpisuje imię i nazwisko → serwer zwraca **tylko jego zaproszenie** (osoby z tym samym numerem w kolumnie „Zaproszenie”).
 - Najpierw wypełnia siebie, potem dla każdej kolejnej osoby z zaproszenia: „Czy chcesz uzupełnić odpowiedź również za: X?”.
-- Typy osób: Dorosły / Dziecko (wiek, menu dziecięce) / Osoba towarzysząca (gość wpisuje jej imię i nazwisko).
+- Typy osób: Dorosły / Osoba towarzysząca (gość wpisuje jej imię i nazwisko). Bez dzieci — na weselu ich nie będzie (08.10.2026).
 - Pola: obecność, menu, alergie, transport (+ skąd/dokąd), nocleg, uwagi. Odpowiedź można zmienić.
 - Zapis z `LockService`, ID wiersza weryfikowane razem z numerem zaproszenia.
 
@@ -87,4 +87,5 @@ Wesele/
 - Lista gości nie trafia do repozytorium (repo publiczne) — żyje tylko w Arkuszu.
 
 ## 10. Pułapki
+- Separator argumentów formuł zależy od ustawień regionalnych arkusza (PL: `;`) — także przy `setFormulas()`. Formuła z `,` w polskim arkuszu = `#ERROR!`. Rozwiązanie: `argSeparator_()` sprawdza separator na próbnej formule (08.10.2026).
 - Po każdej zmianie `.gs`: **Nowa wersja** wdrożenia, potem `/exec?action=rsvpVersion` (Playbook §11).

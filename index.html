@@ -424,8 +424,7 @@ const demoDb = [
   { id:"b1", inv:"Z2", first:"Jan", last:"Testowy", type:"Dorosły", a:null },
   { id:"b2", inv:"Z2", first:"", last:"", type:"Osoba towarzysząca", a:null },
   { id:"c1", inv:"Z3", first:"Maria", last:"Wzorowa", type:"Dorosły", a:null },
-  { id:"c2", inv:"Z3", first:"Tomasz", last:"Wzorowy", type:"Dorosły", a:null },
-  { id:"c3", inv:"Z3", first:"Zosia", last:"Wzorowa", type:"Dziecko", a:null }
+  { id:"c2", inv:"Z3", first:"Tomasz", last:"Wzorowy", type:"Dorosły", a:null }
 ];
 const norm = s => String(s||"").toLowerCase().replace(/ł/g,"l").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z ]/g," ").replace(/\s+/g," ").trim();
 
@@ -461,7 +460,6 @@ const S = { inv:null, selfId:null, members:[], asked:new Set(), current:null };
 
 const nameOf = m => (m.first || m.last) ? `${m.first} ${m.last}`.trim() : "Osoba towarzysząca";
 const isPlus = m => m.type === "Osoba towarzysząca";
-const isChild = m => m.type === "Dziecko";
 const byId = id => S.members.find(m=>m.id===id);
 const self = () => byId(S.selfId);
 
@@ -515,7 +513,7 @@ function renderForm(id){
   const m = byId(id); S.current = id;
   const a = m.answers || {};
   const me = id === S.selfId;
-  const menuOpts = isChild(m) ? ["Menu dziecięce","Tradycyjne","Wegetariańskie"] : ["Tradycyjne","Wegetariańskie","Wegańskie"];
+  const menuOpts = ["Tradycyjne","Wegetariańskie","Wegańskie"];
   view.innerHTML = `
     ${partyChips()}
     <form id="fGuest" novalidate>
@@ -528,7 +526,6 @@ function renderForm(id){
         ${isPlus(m) ? `<div class="field"><label for="pName">Imię i nazwisko osoby towarzyszącej</label><input type="text" id="pName" value="${esc((m.first||m.last)?nameOf(m):"")}"></div>` : ""}
         ${choiceGroup("menu", "Menu", menuOpts, a.menu)}
         <div class="field"><label for="allergies">Alergie lub nietolerancje pokarmowe</label><input type="text" id="allergies" placeholder="np. orzechy, laktoza (zostaw puste, jeśli brak)" value="${esc(a.allergies||"")}"></div>
-        ${isChild(m) ? `<div class="field"><label for="childAge">Wiek dziecka</label><input type="number" id="childAge" min="0" max="17" style="max-width:120px" value="${esc(a.childAge||"")}"></div>` : ""}
         ${choiceGroup("transport", "Transport", ["Nie potrzebuję","Dojazd na wesele","Powrót po weselu","W obie strony"], a.transport)}
         <div class="field" id="fromWrap"><label for="from">Skąd potrzebny dojazd / dokąd powrót?</label><input type="text" id="from" placeholder="np. Lublin, dworzec" value="${esc(a.from||"")}"></div>
         ${choiceGroup("lodging", "Nocleg", ["Nie potrzebuję","Tak, potrzebuję noclegu"], a.lodging)}
@@ -556,7 +553,6 @@ function renderForm(id){
     const payload = { invitation:S.inv, id:m.id, filledBy: nameOf(self()) };
     if (answers.attending === "Tak"){
       Object.assign(answers, { menu:val("menu"), allergies:$("#allergies").value.trim(), transport:val("transport"), from:$("#from").value.trim(), lodging:val("lodging") });
-      if (isChild(m)) answers.childAge = $("#childAge").value;
       if (!answers.menu) return err("Wybierz menu.");
       if (!answers.transport) return err("Zaznacz, czy potrzebny jest transport.");
       if (!answers.lodging) return err("Zaznacz, czy potrzebny jest nocleg.");
@@ -594,7 +590,7 @@ function next(){
       <svg class="ill draw" viewBox="0 0 100 90" aria-hidden="true"><use href="#i-bow"/></svg>
       <p>${q}</p>
       ${other.answers ? `<p class="muted" style="font-size:1rem;margin-top:-10px">Ta osoba już odpowiedziała (${other.answers.attending==="Tak"?"będzie":"nie będzie"}). Możesz poprawić jej odpowiedź.</p>` : ""}
-      <div class="row"><button class="btn" id="aYes">Tak, uzupełnię</button><button class="btn ghost" id="aNo">Nie, ${isChild(other)||isPlus(other)?"później":"zrobi to sam(a)"}</button></div>
+      <div class="row"><button class="btn" id="aYes">Tak, uzupełnię</button><button class="btn ghost" id="aNo">Nie, ${isPlus(other)?"później":"zrobi to sam(a)"}</button></div>
     </div>`;
   bindChips();
   $("#aYes").addEventListener("click", () => renderForm(other.id));
