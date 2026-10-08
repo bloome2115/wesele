@@ -34,7 +34,7 @@ Grafiki: ⚠️ obecnie tymczasowe SVG rysowane przez Claude → do podmiany na 
 | Plik | Status |
 |---|---|
 | `index.html` — hero (zaproszenie + odliczanie), Kiedy i gdzie, Plan dnia, Dojazd i nocleg, RSVP, Kontakt | ✅ (tryb podglądu) |
-| `apps-script/Code.gs` — kopia backendu RSVP | ✅ kod gotowy, ⏭️ niewdrożony |
+| `apps-script/Code.gs` — kopia backendu RSVP | ✅ wdrożony (wersja `2026-10-08b`) |
 
 ## 5. Technologia
 | Element | Technologia | Koszt |
@@ -68,7 +68,7 @@ Pusty `CONFIG.scriptUrl` = tryb podglądu z przykładowymi gośćmi (nic nie zap
 | Data ślubu `2027-06-26` | `index.html` → `CONFIG.date` | przykładowa |
 | Termin RSVP `2027-05-15` | `CONFIG.rsvpDeadline` | przykładowy |
 | Plan dnia (poza 17:00) | `CONFIG.schedule` | ogólne punkty bez godzin |
-| Tryb podglądu, przykładowi goście | `CONFIG.scriptUrl` pusty | do podpięcia |
+| Przykładowi goście (Kowalscy, Nowak) | Arkusz „Goście” | do zastąpienia prawdziwą listą |
 | Ilustracje | sprite SVG w `index.html` | tymczasowe |
 | Teksty Transport / Nocleg | sekcja „Dojazd i nocleg” | ogólne, bez konkretów |
 
