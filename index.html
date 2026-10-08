@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Daniel & Zuzia</title>
+<meta name="description" content="Wszystko o naszym ślubie i weselu: miejsce, plan dnia, transport, nocleg i potwierdzenie obecności.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&display=swap">
+<style>
+/* Layout: one cream "invitation card" column on textured paper; red hand-drawn line art scattered at the edges, like the printed invitations. Single deliberate light look (letterpress paper). */
+:root{
+  --paper:#f6f1e7;
+  --card:#fbf8f2;
+  --ink:#2b1e1c;
+  --muted:#76665f;
+  --red:#a82a2c;
+  --red-soft:rgba(168,42,44,.12);
+  --line:rgba(168,42,44,.28);
+  --f-display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --f-body:"EB Garamond","Garamond","Times New Roman",serif;
+  --f-script:"Pinyon Script","Snell Roundhand","Apple Chancery",cursive;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--f-body);font-size:1.125rem;line-height:1.6;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .38 0 0 0 0 .32 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%}
+[hidden]{display:none!important}
+a{color:var(--red);text-underline-offset:3px;text-decoration-thickness:1px}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,label:focus-within{outline:2px solid var(--red);outline-offset:3px}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:24px 64px}
+
+/* drawn illustrations */
+.ill{color:var(--red);fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;filter:url(#rough);overflow:visible}
+.ill .fill{fill:currentColor;stroke:none}
+.draw{stroke-dasharray:1;stroke-dashoffset:0;animation:draw 2.2s cubic-bezier(.6,.1,.3,1) both}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.draw{animation:none}html{scroll-behavior:auto}}
+
+/* nav */
+nav.top{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 22px;padding-block:6px 22px;font-family:var(--f-display);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase}
+nav.top a{color:var(--ink);text-decoration:none;padding:4px 0;border-bottom:1px solid transparent}
+nav.top a:hover{border-color:var(--red);color:var(--red)}
+
+/* hero card */
+.card{position:relative;background:var(--card);border:1px solid rgba(43,30,28,.08);box-shadow:0 1px 0 rgba(43,30,28,.04),0 18px 40px -24px rgba(80,40,30,.35)}
+.hero{padding:clamp(150px,30vw,210px) clamp(20px,6vw,72px) clamp(150px,26vw,200px);text-align:center;overflow:hidden}
+.hero .pos{position:absolute}
+.hero .tower{width:clamp(120px,24vw,190px);top:clamp(14px,3vw,30px);left:50%;transform:translateX(-50%)}
+.hero .rings{width:clamp(70px,13vw,110px);top:clamp(26px,5vw,60px);left:clamp(8px,4vw,40px)}
+.hero .cupid{width:clamp(56px,10vw,90px);top:clamp(18px,4vw,40px);right:clamp(8px,4vw,40px)}
+.hero .car{width:clamp(150px,30vw,250px);bottom:clamp(12px,3vw,28px);right:clamp(4px,4vw,40px)}
+.hero .cake{width:clamp(76px,14vw,120px);bottom:clamp(14px,3vw,30px);left:clamp(10px,5vw,48px)}
+.hero .wine{width:clamp(26px,5vw,40px);bottom:clamp(70px,12vw,110px);left:clamp(96px,22vw,190px)}
+.hero .spark{width:16px}
+.eyebrow{font-style:italic;color:var(--muted);font-size:1.15rem;margin:0}
+.names{font-family:var(--f-display);font-weight:500;letter-spacing:.2em;text-transform:uppercase;font-size:clamp(2rem,7.4vw,3.6rem);line-height:1.05;margin:14px 0 6px;text-wrap:balance}
+.names .amp{display:block;font-family:var(--f-script);text-transform:none;letter-spacing:0;color:var(--red);font-size:.95em;line-height:.9;margin:4px 0 2px;font-weight:400}
+.when{font-family:var(--f-display);letter-spacing:.14em;text-transform:uppercase;font-size:.95rem;margin:18px 0 2px}
+.where{font-family:var(--f-script);font-size:clamp(1.6rem,4.4vw,2.1rem);color:var(--ink);margin:0}
+.count{display:flex;justify-content:center;gap:clamp(14px,4vw,34px);margin-top:26px;font-variant-numeric:tabular-nums}
+.count div{display:grid;justify-items:center}
+.count b{font-family:var(--f-display);font-weight:400;font-size:clamp(1.6rem,5vw,2.3rem);color:var(--red);line-height:1}
+.count span{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.cta{display:inline-block;margin-top:28px;font-family:var(--f-display);font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--card);background:var(--red);padding:14px 26px;text-decoration:none;border:none;cursor:pointer}
+.cta:hover{background:#8f2123}
+
+/* sections */
+section.block{padding-block:72px 8px;text-align:center}
+.orn{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--red)}
+.orn::before,.orn::after{content:"";height:1px;width:min(90px,18vw);background:var(--line)}
+h2{font-family:var(--f-display);font-weight:400;font-size:clamp(1.5rem,4vw,2rem);letter-spacing:.16em;text-transform:uppercase;margin:16px 0 4px;text-wrap:balance}
+.sub{font-family:var(--f-script);font-size:1.7rem;color:var(--red);margin:0 0 28px;line-height:1.2}
+.lead{max-width:60ch;margin:0 auto;color:var(--ink)}
+.muted{color:var(--muted)}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:8px}
+.fact{display:grid;justify-items:center;gap:6px;padding:18px 10px}
+.fact svg{width:74px;height:74px}
+.fact .k{font-family:var(--f-display);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.fact .v{font-size:1.25rem;line-height:1.35}
+
+.timeline{list-style:none;margin:0 auto;padding:0;max-width:460px;display:grid;gap:0}
+.timeline li{display:grid;grid-template-columns:96px 1fr;gap:18px;text-align:left;padding:16px 0;border-bottom:1px dashed var(--line)}
+.timeline li:last-child{border-bottom:none}
+.timeline .t{font-family:var(--f-display);color:var(--red);font-size:1.25rem;text-align:right;font-variant-numeric:tabular-nums;line-height:1.3}
+.timeline .t small{display:block;font-family:var(--f-body);font-style:italic;font-size:.9rem;color:var(--muted)}
+.timeline .d b{display:block;font-weight:500;font-size:1.2rem}
+
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;text-align:left;margin-top:8px}
+.duo article{display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:start}
+.duo article svg{width:64px;height:64px}
+.duo h3{font-family:var(--f-display);font-weight:400;letter-spacing:.14em;text-transform:uppercase;font-size:1rem;margin:4px 0 6px}
+.duo p{margin:0}
+
+/* RSVP */
+.rsvp{margin-top:8px;padding:clamp(24px,5vw,48px);text-align:left}
+.rsvp .head{text-align:center;margin-bottom:22px}
+.demo{background:var(--red-soft);color:var(--ink);font-size:.95rem;padding:10px 14px;margin:0 0 22px;border-left:2px solid var(--red)}
+.field{display:grid;gap:8px;margin-bottom:22px}
+.field > label,.legend{font-family:var(--f-display);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+fieldset{border:0;padding:0;margin:0 0 22px;min-width:0}
+legend{padding:0;margin-bottom:10px}
+input[type=text],input[type=number],textarea{width:100%;font:inherit;color:var(--ink);background:transparent;border:0;border-bottom:1px solid rgba(43,30,28,.3);padding:8px 2px;border-radius:0}
+input[type=text]:focus,input[type=number]:focus,textarea:focus{outline:none;border-bottom-color:var(--red);box-shadow:0 1px 0 var(--red)}
+textarea{min-height:76px;resize:vertical;border:1px solid rgba(43,30,28,.2);padding:10px}
+.choices{display:flex;flex-wrap:wrap;gap:10px}
+.choice{position:relative}
+.choice input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.choice span{display:inline-block;padding:9px 16px;border:1px solid rgba(43,30,28,.25);font-size:1.02rem;cursor:pointer;transition:background .15s,border-color .15s,color .15s;background:var(--card)}
+.choice input:checked + span{background:var(--red);color:var(--card);border-color:var(--red)}
+.choice input:focus-visible + span{outline:2px solid var(--red);outline-offset:2px}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn{font-family:var(--f-display);font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;padding:13px 22px;cursor:pointer;border:1px solid var(--red);background:var(--red);color:var(--card)}
+.btn:hover{background:#8f2123}
+.btn.ghost{background:transparent;color:var(--red)}
+.btn.ghost:hover{background:var(--red-soft)}
+.btn[disabled]{opacity:.55;cursor:progress}
+.err{color:var(--red);font-style:italic;margin:6px 0 0;min-height:1.2em}
+.party{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:.98rem;padding:6px 12px;border:1px solid rgba(43,30,28,.2);background:var(--card);cursor:pointer;font-family:inherit;color:var(--ink)}
+.chip i{width:8px;height:8px;border-radius:50%;background:rgba(43,30,28,.25)}
+.chip.ok i{background:#5b7a4a}
+.chip.no i{background:var(--muted)}
+.chip.cur{border-color:var(--red);box-shadow:inset 0 0 0 1px var(--red)}
+.person-title{font-family:var(--f-script);font-size:2.1rem;color:var(--red);margin:0 0 4px;line-height:1.1}
+.ask{text-align:center;padding:10px 0}
+.ask svg{width:110px;height:auto}
+.ask p{font-size:1.3rem;max-width:34ch;margin:12px auto 20px;text-wrap:balance}
+.ask .row{justify-content:center}
+.summary{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:12px}
+.summary li{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:14px 0;border-bottom:1px dashed var(--line)}
+.summary b{font-weight:500;font-size:1.15rem}
+.summary .det{grid-column:1/-1;color:var(--muted);font-size:1rem}
+.linkbtn{background:none;border:0;color:var(--red);font:inherit;font-style:italic;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:0}
+
+.contact{font-size:1.4rem;font-family:var(--f-display);letter-spacing:.06em;user-select:all}
+footer{text-align:center;padding-block:80px 30px}
+footer svg{width:150px}
+footer .sig{font-family:var(--f-script);font-size:2.4rem;color:var(--red);margin:8px 0 0}
+
+@media (max-width:560px){
+  .hero .cupid{display:none}
+  .hero .wine{display:none}
+  .hero .spark{display:none}
+  .timeline li{grid-template-columns:76px 1fr;gap:12px}
+  .duo article{grid-template-columns:52px 1fr}
+  .duo article svg{width:52px;height:52px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ ILLUSTRATION SPRITE (original line drawings) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="rough" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.4"/>
+    </filter>
+    <symbol id="i-coupe" viewBox="0 0 60 60">
+      <ellipse pathLength="1" cx="30" cy="12" rx="24" ry="4"/>
+      <path pathLength="1" d="M6 12C9 28 51 28 54 12"/>
+      <path pathLength="1" d="M30 25V49"/>
+      <ellipse pathLength="1" cx="30" cy="51" rx="11" ry="2.6"/>
+      <path pathLength="1" d="M30 33C22 26 16 35 30 34C44 35 38 26 30 33Z"/>
+      <path pathLength="1" d="M29 34L22 44M31 34L38 44"/>
+    </symbol>
+    <symbol id="i-tower" viewBox="0 0 190 170">
+      <use href="#i-coupe" x="65" y="0" width="60" height="60"/>
+      <use href="#i-coupe" x="35" y="54" width="60" height="60"/>
+      <use href="#i-coupe" x="95" y="54" width="60" height="60"/>
+      <use href="#i-coupe" x="5" y="108" width="60" height="60"/>
+      <use href="#i-coupe" x="65" y="108" width="60" height="60"/>
+      <use href="#i-coupe" x="125" y="108" width="60" height="60"/>
+    </symbol>
+    <symbol id="i-rings" viewBox="0 0 110 100">
+      <circle pathLength="1" cx="40" cy="62" r="24"/>
+      <circle pathLength="1" cx="40" cy="62" r="19"/>
+      <circle pathLength="1" cx="66" cy="66" r="24"/>
+      <circle pathLength="1" cx="66" cy="66" r="19.5"/>
+      <path pathLength="1" d="M30 36L35 29H45L50 36L40 46Z M30 36H50 M35 29L40 36L45 29"/>
+      <path pathLength="1" d="M40 14V22M26 19L31 25M54 19L49 25M20 30L27 32M60 30L53 32"/>
+      <path pathLength="1" d="M94 16C95 22 96 23 102 24C96 25 95 26 94 32C93 26 92 25 86 24C92 23 93 22 94 16Z"/>
+    </symbol>
+    <symbol id="i-candles" viewBox="0 0 100 130">
+      <path pathLength="1" d="M24 14C20 20 21 25 24 25C27 25 28 20 24 14Z M50 4C46 10 47 15 50 15C53 15 54 10 50 4Z M76 14C72 20 73 25 76 25C79 25 80 20 76 14Z"/>
+      <path pathLength="1" d="M20 28H28V62H20Z M46 18H54V58H46Z M72 28H80V62H72Z"/>
+      <path pathLength="1" d="M15 64Q24 70 33 64 M41 60Q50 66 59 60 M67 64Q76 70 85 64"/>
+      <path pathLength="1" d="M24 68C24 82 36 84 50 80C64 84 76 82 76 68 M50 66V108"/>
+      <path pathLength="1" d="M44 86Q50 92 56 86 M44 96Q50 100 56 96"/>
+      <path pathLength="1" d="M34 122C38 112 44 108 50 108C56 108 62 112 66 122Z"/>
+    </symbol>
+    <symbol id="i-car" viewBox="0 0 250 110">
+      <path pathLength="1" d="M70 82C70 70 80 63 96 62L118 46C126 40 150 40 160 46L176 60C200 60 222 64 230 74C234 80 232 84 228 86H70Z"/>
+      <path pathLength="1" d="M118 46L126 34M160 46V62H120"/>
+      <circle pathLength="1" cx="100" cy="86" r="14"/><circle pathLength="1" cx="100" cy="86" r="6"/>
+      <circle pathLength="1" cx="200" cy="86" r="14"/><circle pathLength="1" cx="200" cy="86" r="6"/>
+      <path pathLength="1" d="M178 70H190 M210 66C214 66 218 68 220 72"/>
+      <path pathLength="1" d="M70 76C54 80 40 88 22 92 M72 80C58 90 46 98 30 102 M74 84C66 96 58 102 48 108"/>
+      <path pathLength="1" d="M10 88L22 86L24 96L12 98Z M20 98L32 98L32 108L20 108Z M38 102L48 100L50 109L40 110Z"/>
+      <path pathLength="1" d="M140 40C130 30 132 18 140 16C146 14 152 22 146 30 M140 16C138 8 146 4 150 10C154 4 162 8 158 16C164 18 162 26 156 26"/>
+      <path pathLength="1" d="M150 26L146 44"/>
+      <path pathLength="1" d="M160 46C178 34 196 36 214 50"/>
+    </symbol>
+    <symbol id="i-cake" viewBox="0 0 110 120">
+      <path pathLength="1" d="M55 26C49 21 47 15 52 14C54 14 55 16 55 17C55 16 56 14 58 14C63 15 61 21 55 26Z"/>
+      <path pathLength="1" d="M40 30H70V48H40Z M30 50H80V70H30Z M20 72H90V96H20Z"/>
+      <path pathLength="1" d="M40 35Q45 40 50 35Q55 40 60 35Q65 40 70 35 M30 56Q36 62 42 56Q48 62 55 56Q62 62 68 56Q74 62 80 56 M20 78Q27 84 34 78Q41 84 48 78Q55 84 62 78Q69 84 76 78Q83 84 90 78"/>
+      <path pathLength="1" d="M10 100C30 96 80 96 100 100C80 104 30 104 10 100Z M55 103V112 M42 116Q55 110 68 116"/>
+    </symbol>
+    <symbol id="i-wine" viewBox="0 0 40 80">
+      <path fill="currentColor" stroke="none" d="M8 24C9 34 14 40 20 40C26 40 31 34 32 24Z" opacity=".9"/>
+      <path pathLength="1" d="M7 6H33C35 26 30 40 20 40C10 40 5 26 7 6Z"/>
+      <path pathLength="1" d="M20 40V70 M10 74Q20 68 30 74"/>
+    </symbol>
+    <symbol id="i-cupid" viewBox="0 0 120 100">
+      <circle pathLength="1" cx="70" cy="34" r="13"/>
+      <path pathLength="1" d="M60 26C62 18 76 16 82 24 M64 38Q67 41 70 39"/>
+      <path pathLength="1" d="M82 34C98 20 112 26 114 40C104 36 96 40 90 44 M84 42C100 40 108 52 104 62C98 54 90 52 84 52"/>
+      <path pathLength="1" d="M62 46C58 58 62 70 74 72C84 74 86 62 80 50"/>
+      <path pathLength="1" d="M62 52C52 56 42 56 34 52"/>
+      <path pathLength="1" d="M34 30C24 42 24 62 34 74"/>
+      <path pathLength="1" d="M34 30L34 74"/>
+      <path pathLength="1" d="M8 52L58 52 M8 52L14 48M8 52L14 56 M54 48L60 52L54 56"/>
+    </symbol>
+    <symbol id="i-lemon" viewBox="0 0 100 70">
+      <circle pathLength="1" cx="32" cy="38" r="22"/><circle pathLength="1" cx="32" cy="38" r="18"/>
+      <path pathLength="1" d="M32 20V56M14 38H50M19 25L45 51M45 25L19 51"/>
+      <path pathLength="1" d="M58 30C58 18 72 12 84 18C94 24 96 38 88 46C80 54 64 52 60 42C59 38 58 34 58 30Z M56 32L60 30 M90 44L94 46"/>
+      <path pathLength="1" d="M70 26.5h.1M78 34h.1M72 40h.1M82 26h.1"/>
+    </symbol>
+    <symbol id="i-bow" viewBox="0 0 100 90">
+      <path pathLength="1" d="M50 40C38 22 16 20 18 36C20 50 40 48 50 42C60 48 80 50 82 36C84 20 62 22 50 40Z"/>
+      <ellipse pathLength="1" cx="50" cy="42" rx="5" ry="6"/>
+      <path pathLength="1" d="M47 47C42 60 34 72 26 84L34 82L36 88 M53 47C58 60 66 72 74 84L66 82L64 88"/>
+    </symbol>
+    <symbol id="i-cheers" viewBox="0 0 120 100">
+      <path pathLength="1" d="M14 30L48 22C52 38 46 50 36 52C26 54 18 46 14 30Z"/>
+      <path pathLength="1" d="M36 52L42 82M30 86Q42 80 52 84"/>
+      <path pathLength="1" d="M72 22L106 30C102 46 94 54 84 52C74 50 68 38 72 22Z"/>
+      <path pathLength="1" d="M84 52L78 82M68 84Q78 80 90 86"/>
+      <path pathLength="1" d="M58 6V14M48 10L52 16M68 10L64 16"/>
+      <path pathLength="1" d="M40 64C34 60 30 66 39 66C48 66 44 60 40 64Z M80 64C74 60 70 66 79 66C88 66 84 60 80 64Z"/>
+    </symbol>
+    <symbol id="i-house" viewBox="0 0 100 90">
+      <path pathLength="1" d="M14 44L50 14L86 44 M22 38V82H78V38"/>
+      <path pathLength="1" d="M42 82V58H58V82 M30 50H38V58H30Z M62 50H70V58H62Z"/>
+      <path pathLength="1" d="M66 26V16H74V33"/>
+      <path pathLength="1" d="M82 6C83 10 84 11 88 12C84 13 83 14 82 18C81 14 80 13 76 12C80 11 81 10 82 6Z"/>
+    </symbol>
+    <symbol id="i-spark" viewBox="-12 -12 24 24">
+      <path pathLength="1" d="M0 -10C1 -2 2 -1 10 0C2 1 1 2 0 10C-1 2 -2 1 -10 0C-2 -1 -1 -2 0 -10Z"/>
+    </symbol>
+    <symbol id="i-star" viewBox="-12 -12 24 24">
+      <path pathLength="1" d="M0 -9V9M-9 0H9M-6.4 -6.4L6.4 6.4M6.4 -6.4L-6.4 6.4"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <nav class="top" aria-label="Sekcje">
+    <a href="#kiedy">Kiedy i gdzie</a>
+    <a href="#plan">Plan dnia</a>
+    <a href="#praktyczne">Dojazd i nocleg</a>
+    <a href="#rsvp">Potwierdź obecność</a>
+  </nav>
+
+  <!-- ============ HERO / INVITATION ============ -->
+  <header class="card hero">
+    <svg class="ill draw pos tower" viewBox="0 0 190 170" aria-hidden="true"><use href="#i-tower"/></svg>
+    <svg class="ill draw pos rings" viewBox="0 0 110 100" aria-hidden="true"><use href="#i-rings"/></svg>
+    <svg class="ill pos cupid" viewBox="0 0 100 130" aria-hidden="true"><use href="#i-candles"/></svg>
+    <svg class="ill draw pos cake" viewBox="0 0 110 120" aria-hidden="true"><use href="#i-cake"/></svg>
+    <svg class="ill pos wine" viewBox="0 0 40 80" aria-hidden="true"><use href="#i-wine"/></svg>
+    <svg class="ill draw pos car" viewBox="0 0 250 110" aria-hidden="true"><use href="#i-car"/></svg>
+    <svg class="ill pos spark" style="top:22%;left:24%" viewBox="-12 -12 24 24" aria-hidden="true"><use href="#i-star"/></svg>
+    <svg class="ill pos spark" style="top:44%;right:7%" viewBox="-12 -12 24 24" aria-hidden="true"><use href="#i-spark"/></svg>
+    <svg class="ill pos spark" style="bottom:36%;left:6%" viewBox="-12 -12 24 24" aria-hidden="true"><use href="#i-star"/></svg>
+
+    <p class="eyebrow">Z radością zapraszamy Was na nasz ślub</p>
+    <h1 class="names">Daniel <span class="amp">&amp;</span> Zuzia</h1>
+    <p class="when" id="heroDate"></p>
+    <p class="where">Lipniak 8, Krzczonów</p>
+    <div class="count" id="count" aria-label="Odliczanie do ślubu"></div>
+    <a class="cta" href="#rsvp">Potwierdź obecność</a>
+  </header>
+
+  <!-- ============ KIEDY I GDZIE ============ -->
+  <section class="block" id="kiedy">
+    <div class="orn"><svg class="ill" width="18" height="18" viewBox="-12 -12 24 24"><use href="#i-spark"/></svg></div>
+    <h2>Kiedy i gdzie</h2>
+    <p class="sub">wszystko w jednym miejscu</p>
+    <div class="facts">
+      <div class="fact">
+        <svg class="ill" viewBox="0 0 110 100" aria-hidden="true"><use href="#i-rings"/></svg>
+        <span class="k">Data</span>
+        <span class="v" id="factDate"></span>
+      </div>
+      <div class="fact">
+        <svg class="ill" viewBox="0 0 100 130" aria-hidden="true"><use href="#i-candles"/></svg>
+        <span class="k">Ceremonia</span>
+        <span class="v">godz. 17:00</span>
+      </div>
+      <div class="fact">
+        <svg class="ill" viewBox="0 0 100 90" aria-hidden="true"><use href="#i-house"/></svg>
+        <span class="k">Miejsce</span>
+        <span class="v">Lipniak 8<br>Krzczonów<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Lipniak%208%2C%20Krzczon%C3%B3w" target="_blank" rel="noopener">Otwórz w Mapach Google</a></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PLAN DNIA ============ -->
+  <section class="block" id="plan">
+    <div class="orn"><svg class="ill" width="18" height="18" viewBox="-12 -12 24 24"><use href="#i-star"/></svg></div>
+    <h2>Plan dnia</h2>
+    <p class="sub">od przysięgi do białego rana</p>
+    <ol class="timeline" id="timeline"></ol>
+  </section>
+
+  <!-- ============ PRAKTYCZNE ============ -->
+  <section class="block" id="praktyczne">
+    <div class="orn"><svg class="ill" width="18" height="18" viewBox="-12 -12 24 24"><use href="#i-spark"/></svg></div>
+    <h2>Dojazd i nocleg</h2>
+    <p class="sub">żebyście mogli bawić się bez zmartwień</p>
+    <div class="duo">
+      <article>
+        <svg class="ill" viewBox="0 0 250 110" aria-hidden="true" style="width:100%;height:auto"><use href="#i-car"/></svg>
+        <div>
+          <h3>Transport</h3>
+          <p>Ceremonia i przyjęcie odbywają się w tym samym miejscu. Jeśli potrzebujecie dojazdu lub powrotu, zaznaczcie to w formularzu, a przed ślubem prześlemy szczegóły.</p>
+        </div>
+      </article>
+      <article>
+        <svg class="ill" viewBox="0 0 100 90" aria-hidden="true"><use href="#i-house"/></svg>
+        <div>
+          <h3>Nocleg</h3>
+          <p>Jeśli chcecie zostać na noc, dajcie nam znać w formularzu. Pomożemy znaleźć miejsce w okolicy.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ RSVP ============ -->
+  <section class="block" id="rsvp">
+    <div class="orn"><svg class="ill" width="18" height="18" viewBox="-12 -12 24 24"><use href="#i-star"/></svg></div>
+    <h2>Potwierdź obecność</h2>
+    <p class="sub" id="rsvpBy"></p>
+
+    <div class="card rsvp">
+      <p class="demo" id="demoNote" hidden>Tryb podglądu: odpowiedzi nie są nigdzie zapisywane. Wpisz np. <b>Anna Przykładowa</b>, <b>Jan Testowy</b> albo <b>Maria Wzorowa</b>.</p>
+      <div id="rsvpView"></div>
+    </div>
+  </section>
+
+  <!-- ============ KONTAKT ============ -->
+  <section class="block" id="kontakt">
+    <div class="orn"><svg class="ill" width="18" height="18" viewBox="-12 -12 24 24"><use href="#i-spark"/></svg></div>
+    <h2>Pytania?</h2>
+    <p class="sub">zadzwońcie albo napiszcie</p>
+    <p class="contact"><a href="tel:+48790744200">+48 790 744 200</a></p>
+  </section>
+
+  <footer>
+    <svg class="ill" viewBox="0 0 120 100" aria-hidden="true"><use href="#i-cheers"/></svg>
+    <p class="sig">Daniel &amp; Zuzia</p>
+  </footer>
+</div>
+
+<script>
+/* ===================== USTAWIENIA — edytujcie tutaj ===================== */
+const CONFIG = {
+  // Data i godzina ceremonii (strefa PL). UZUPEŁNIJCIE PRAWDZIWĄ DATĘ:
+  date: "2027-06-26T17:00:00+02:00",
+  // Do kiedy prosimy o odpowiedź:
+  rsvpDeadline: "2027-05-15",
+  // Adres Web App z Google Apps Script (pusty = tryb podglądu z przykładowymi gośćmi):
+  scriptUrl: "",
+  schedule: [
+    { t: "17:00", title: "Ceremonia ślubna", note: "Prosimy o przybycie ok. 15 minut wcześniej." },
+    { t: "po ceremonii", title: "Życzenia i toast", note: "Lampka szampana na start." },
+    { t: "wieczorem", title: "Kolacja i zabawa", note: "Do białego rana." }
+  ]
+};
+/* ======================================================================= */
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const wedding = new Date(CONFIG.date);
+const fmtLong = d => new Intl.DateTimeFormat("pl-PL", { weekday:"long", day:"numeric", month:"long", year:"numeric" }).format(d);
+const fmtShort = d => new Intl.DateTimeFormat("pl-PL", { day:"numeric", month:"long", year:"numeric" }).format(d);
+
+$("#heroDate").innerHTML = `<span style="white-space:nowrap">${esc(fmtLong(wedding))}</span> · <span style="white-space:nowrap">godz. 17:00</span>`;
+$("#factDate").innerHTML = esc(fmtShort(wedding)) + "<br>" + esc(new Intl.DateTimeFormat("pl-PL",{weekday:"long"}).format(wedding));
+$("#rsvpBy").textContent = "prosimy o odpowiedź do " + fmtShort(new Date(CONFIG.rsvpDeadline + "T12:00:00"));
+$("#timeline").innerHTML = CONFIG.schedule.map(s =>
+  `<li><div class="t">${/\d/.test(s.t) ? esc(s.t) : `<small>${esc(s.t)}</small>`}</div><div class="d"><b>${esc(s.title)}</b><span class="muted">${esc(s.note)}</span></div></li>`).join("");
+
+function plural(n, one, few, many){ if(n===1) return one; const d=n%10, t=n%100; return (d>=2&&d<=4&&(t<12||t>14)) ? few : many; }
+function tick(){
+  let ms = Math.max(0, wedding - Date.now());
+  const days = Math.floor(ms/864e5); ms -= days*864e5;
+  const h = Math.floor(ms/36e5); ms -= h*36e5;
+  const m = Math.floor(ms/6e4);
+  $("#count").innerHTML = [[days, plural(days,"dzień","dni","dni")],[h, plural(h,"godzina","godziny","godzin")],[m, plural(m,"minuta","minuty","minut")]]
+    .map(([n,l]) => `<div><b>${n}</b><span>${l}</span></div>`).join("");
+}
+tick(); setInterval(tick, 30000);
+
+/* ===================== API (Apps Script lub tryb podglądu) ===================== */
+const DEMO = !CONFIG.scriptUrl;
+if (DEMO) $("#demoNote").hidden = false;
+
+const demoDb = [
+  { id:"a1", inv:"Z1", first:"Anna", last:"Przykładowa", type:"Dorosły", a:null },
+  { id:"a2", inv:"Z1", first:"Piotr", last:"Przykładowy", type:"Dorosły", a:null },
+  { id:"b1", inv:"Z2", first:"Jan", last:"Testowy", type:"Dorosły", a:null },
+  { id:"b2", inv:"Z2", first:"", last:"", type:"Osoba towarzysząca", a:null },
+  { id:"c1", inv:"Z3", first:"Maria", last:"Wzorowa", type:"Dorosły", a:null },
+  { id:"c2", inv:"Z3", first:"Tomasz", last:"Wzorowy", type:"Dorosły", a:null },
+  { id:"c3", inv:"Z3", first:"Zosia", last:"Wzorowa", type:"Dziecko", a:null }
+];
+const norm = s => String(s||"").toLowerCase().replace(/ł/g,"l").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z ]/g," ").replace(/\s+/g," ").trim();
+
+const api = {
+  async lookup(name){
+    if (DEMO){
+      await new Promise(r=>setTimeout(r,350));
+      const q = norm(name);
+      const hit = demoDb.filter(g => g.first && (norm(g.first+" "+g.last)===q || norm(g.last+" "+g.first)===q));
+      if (hit.length !== 1) return { ok:false, error: hit.length ? "ambiguous" : "not_found" };
+      const g = hit[0];
+      return { ok:true, invitation:g.inv, selfId:g.id, members: demoDb.filter(x=>x.inv===g.inv).map(x=>({ id:x.id, first:x.first, last:x.last, type:x.type, answers:x.a })) };
+    }
+    const r = await fetch(CONFIG.scriptUrl + "?action=lookup&name=" + encodeURIComponent(name));
+    return r.json();
+  },
+  async save(payload){
+    if (DEMO){
+      await new Promise(r=>setTimeout(r,400));
+      const g = demoDb.find(x=>x.id===payload.id && x.inv===payload.invitation);
+      if(!g) return { ok:false, error:"not_found" };
+      g.a = payload.answers; if (payload.first !== undefined){ g.first=payload.first; g.last=payload.last; }
+      return { ok:true };
+    }
+    const r = await fetch(CONFIG.scriptUrl, { method:"POST", body: JSON.stringify({ action:"save", ...payload }) });
+    return r.json();
+  }
+};
+
+/* ===================== RSVP flow ===================== */
+const view = $("#rsvpView");
+const S = { inv:null, selfId:null, members:[], asked:new Set(), current:null };
+
+const nameOf = m => (m.first || m.last) ? `${m.first} ${m.last}`.trim() : "Osoba towarzysząca";
+const isPlus = m => m.type === "Osoba towarzysząca";
+const isChild = m => m.type === "Dziecko";
+const byId = id => S.members.find(m=>m.id===id);
+const self = () => byId(S.selfId);
+
+function renderLookup(msg){
+  view.innerHTML = `
+    <form id="fLookup" novalidate>
+      <p class="lead" style="margin:0 0 22px">Wpisz swoje imię i nazwisko tak, jak na zaproszeniu. Zobaczysz wszystkie osoby z Twojego zaproszenia.</p>
+      <div class="field">
+        <label for="lkName">Imię i nazwisko</label>
+        <input type="text" id="lkName" autocomplete="name" placeholder="np. Anna Kowalska" required>
+        <p class="err" id="lkErr">${esc(msg||"")}</p>
+      </div>
+      <button class="btn" id="lkBtn">Znajdź moje zaproszenie</button>
+    </form>`;
+  $("#fLookup").addEventListener("submit", async e => {
+    e.preventDefault();
+    const name = $("#lkName").value.trim();
+    if (name.split(/\s+/).length < 2){ $("#lkErr").textContent = "Wpisz imię i nazwisko."; return; }
+    const btn = $("#lkBtn"); btn.disabled = true; btn.textContent = "Szukam…";
+    try{
+      const res = await api.lookup(name);
+      if (!res.ok){
+        $("#lkErr").textContent = res.error === "ambiguous"
+          ? "Znaleźliśmy kilka osób o tym imieniu i nazwisku. Zadzwoń do nas, a pomożemy."
+          : "Nie znaleźliśmy takiej osoby na liście gości. Sprawdź pisownię (np. pełne imię zamiast zdrobnienia).";
+      } else {
+        S.inv = res.invitation; S.selfId = res.selfId; S.members = res.members; S.asked = new Set([res.selfId]);
+        renderForm(S.selfId);
+        return;
+      }
+    }catch(err){ $("#lkErr").textContent = "Nie udało się połączyć. Sprawdź internet i spróbuj ponownie."; }
+    btn.disabled = false; btn.textContent = "Znajdź moje zaproszenie";
+  });
+}
+
+function partyChips(){
+  return `<div class="party" role="list">${S.members.map(m => {
+    const a = m.answers; const cls = a ? (a.attending==="Tak" ? "ok" : "no") : "";
+    const state = a ? (a.attending==="Tak" ? "będzie" : "nie będzie") : "brak odpowiedzi";
+    return `<button type="button" role="listitem" class="chip ${cls} ${S.current===m.id?"cur":""}" data-id="${esc(m.id)}" title="${esc(state)}"><i></i>${esc(nameOf(m))}${m.id===S.selfId?" (Ty)":""}</button>`;
+  }).join("")}</div>`;
+}
+function bindChips(){ view.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => { S.asked.add(b.dataset.id); renderForm(b.dataset.id); })); }
+
+function choiceGroup(name, label, opts, val){
+  return `<fieldset><legend class="legend">${label}</legend><div class="choices">${opts.map((o,i)=>
+    `<label class="choice"><input type="radio" name="${name}" id="${name}_${i}" value="${esc(o)}" ${val===o?"checked":""}><span>${esc(o)}</span></label>`).join("")}</div></fieldset>`;
+}
+
+function renderForm(id){
+  const m = byId(id); S.current = id;
+  const a = m.answers || {};
+  const me = id === S.selfId;
+  const menuOpts = isChild(m) ? ["Menu dziecięce","Tradycyjne","Wegetariańskie"] : ["Tradycyjne","Wegetariańskie","Wegańskie"];
+  view.innerHTML = `
+    ${partyChips()}
+    <form id="fGuest" novalidate>
+      <p class="person-title">${me ? "Twoja odpowiedź" : esc(nameOf(m))}</p>
+      <p class="muted" style="margin:0 0 24px">${me ? esc(nameOf(m)) : (isPlus(m) ? "Osoba towarzysząca z Twojego zaproszenia" : "Wypełniasz w imieniu tej osoby")}${m.answers ? " · odpowiedź już zapisana, możesz ją zmienić" : ""}</p>
+
+      ${choiceGroup("attending", isPlus(m) ? "Czy przyjdziesz z osobą towarzyszącą?" : (me ? "Czy będziesz z nami?" : "Czy ta osoba będzie z nami?"),
+        isPlus(m) ? ["Tak","Nie"] : ["Tak","Nie"], a.attending)}
+      <div id="yesPart">
+        ${isPlus(m) ? `<div class="field"><label for="pName">Imię i nazwisko osoby towarzyszącej</label><input type="text" id="pName" value="${esc((m.first||m.last)?nameOf(m):"")}"></div>` : ""}
+        ${choiceGroup("menu", "Menu", menuOpts, a.menu)}
+        <div class="field"><label for="allergies">Alergie lub nietolerancje pokarmowe</label><input type="text" id="allergies" placeholder="np. orzechy, laktoza (zostaw puste, jeśli brak)" value="${esc(a.allergies||"")}"></div>
+        ${isChild(m) ? `<div class="field"><label for="childAge">Wiek dziecka</label><input type="number" id="childAge" min="0" max="17" style="max-width:120px" value="${esc(a.childAge||"")}"></div>` : ""}
+        ${choiceGroup("transport", "Transport", ["Nie potrzebuję","Dojazd na wesele","Powrót po weselu","W obie strony"], a.transport)}
+        <div class="field" id="fromWrap"><label for="from">Skąd potrzebny dojazd / dokąd powrót?</label><input type="text" id="from" placeholder="np. Lublin, dworzec" value="${esc(a.from||"")}"></div>
+        ${choiceGroup("lodging", "Nocleg", ["Nie potrzebuję","Tak, potrzebuję noclegu"], a.lodging)}
+      </div>
+      <div class="field"><label for="notes">Wiadomość lub uwagi (opcjonalnie)</label><textarea id="notes">${esc(a.notes||"")}</textarea></div>
+      <p class="err" id="gErr"></p>
+      <div class="row"><button class="btn" id="gBtn">Zapisz odpowiedź</button>${me?"":`<button type="button" class="btn ghost" id="gSkip">Pomiń tę osobę</button>`}</div>
+    </form>`;
+  bindChips();
+  const f = $("#fGuest");
+  const sync = () => {
+    const att = f.querySelector("input[name=attending]:checked")?.value;
+    $("#yesPart").hidden = att !== "Tak";
+    const tr = f.querySelector("input[name=transport]:checked")?.value;
+    $("#fromWrap").hidden = !tr || tr === "Nie potrzebuję";
+  };
+  f.addEventListener("change", sync); sync();
+  $("#gSkip")?.addEventListener("click", next);
+  f.addEventListener("submit", async e => {
+    e.preventDefault();
+    const val = n => f.querySelector(`input[name=${n}]:checked`)?.value || "";
+    const answers = { attending: val("attending") };
+    const err = t => { $("#gErr").textContent = t; };
+    if (!answers.attending) return err("Zaznacz, czy " + (me ? "będziesz" : "ta osoba będzie") + " z nami.");
+    const payload = { invitation:S.inv, id:m.id, filledBy: nameOf(self()) };
+    if (answers.attending === "Tak"){
+      Object.assign(answers, { menu:val("menu"), allergies:$("#allergies").value.trim(), transport:val("transport"), from:$("#from").value.trim(), lodging:val("lodging") });
+      if (isChild(m)) answers.childAge = $("#childAge").value;
+      if (!answers.menu) return err("Wybierz menu.");
+      if (!answers.transport) return err("Zaznacz, czy potrzebny jest transport.");
+      if (!answers.lodging) return err("Zaznacz, czy potrzebny jest nocleg.");
+      if (answers.transport === "Nie potrzebuję") answers.from = "";
+      if (isPlus(m)){
+        const pn = $("#pName").value.trim().split(/\s+/);
+        if (pn.length < 2) return err("Wpisz imię i nazwisko osoby towarzyszącej.");
+        payload.first = pn.shift(); payload.last = pn.join(" ");
+      }
+    }
+    answers.notes = $("#notes").value.trim();
+    payload.answers = answers;
+    const btn = $("#gBtn"); btn.disabled = true; btn.textContent = "Zapisuję…";
+    try{
+      const res = await api.save(payload);
+      if (!res.ok) throw new Error(res.error);
+      m.answers = answers;
+      if (payload.first !== undefined){ m.first = payload.first; m.last = payload.last; }
+      next();
+    }catch(x){ btn.disabled = false; btn.textContent = "Zapisz odpowiedź"; err("Nie udało się zapisać. Spróbuj ponownie za chwilę."); }
+  });
+  view.scrollIntoView({ block:"start", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+}
+
+function next(){
+  const other = S.members.find(m => !S.asked.has(m.id));
+  if (!other) return renderSummary();
+  S.asked.add(other.id); S.current = null;
+  const q = isPlus(other)
+    ? (other.first ? `Czy chcesz uzupełnić odpowiedź również za swoją osobę towarzyszącą (${esc(nameOf(other))})?` : "Twoje zaproszenie obejmuje osobę towarzyszącą. Czy chcesz uzupełnić także jej dane?")
+    : `Czy chcesz uzupełnić odpowiedź również za: <b>${esc(nameOf(other))}</b>?`;
+  view.innerHTML = `
+    ${partyChips()}
+    <div class="ask">
+      <svg class="ill draw" viewBox="0 0 100 90" aria-hidden="true"><use href="#i-bow"/></svg>
+      <p>${q}</p>
+      ${other.answers ? `<p class="muted" style="font-size:1rem;margin-top:-10px">Ta osoba już odpowiedziała (${other.answers.attending==="Tak"?"będzie":"nie będzie"}). Możesz poprawić jej odpowiedź.</p>` : ""}
+      <div class="row"><button class="btn" id="aYes">Tak, uzupełnię</button><button class="btn ghost" id="aNo">Nie, ${isChild(other)||isPlus(other)?"później":"zrobi to sam(a)"}</button></div>
+    </div>`;
+  bindChips();
+  $("#aYes").addEventListener("click", () => renderForm(other.id));
+  $("#aNo").addEventListener("click", next);
+}
+
+function renderSummary(){
+  S.current = null;
+  const line = m => {
+    const a = m.answers;
+    if (!a) return `<span class="det">Brak odpowiedzi</span>`;
+    if (a.attending !== "Tak") return `<span class="det">Nie będzie z nami</span>`;
+    const bits = [a.menu, a.allergies && ("alergie: " + a.allergies), a.transport !== "Nie potrzebuję" && ("transport: " + a.transport.toLowerCase() + (a.from ? " (" + a.from + ")" : "")), a.lodging !== "Nie potrzebuję" && "nocleg"].filter(Boolean);
+    return `<span class="det">Będzie · ${esc(bits.join(" · "))}</span>`;
+  };
+  view.innerHTML = `
+    <div class="ask">
+      <svg class="ill draw" viewBox="0 0 120 100" aria-hidden="true"><use href="#i-cheers"/></svg>
+      <p>Dziękujemy! Wasze odpowiedzi są zapisane.</p>
+    </div>
+    <ul class="summary">${S.members.map(m => `<li><b>${esc(nameOf(m))}</b><button class="linkbtn" data-id="${esc(m.id)}">zmień</button>${line(m)}</li>`).join("")}</ul>
+    <p class="muted" style="text-align:center;margin:0">Odpowiedź można zmienić w każdej chwili, wpisując ponownie imię i nazwisko.</p>`;
+  view.querySelectorAll(".linkbtn").forEach(b => b.addEventListener("click", () => renderForm(b.dataset.id)));
+}
+
+renderLookup();
+</script>
+</body>
+</html>
