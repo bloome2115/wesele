@@ -1,6 +1,6 @@
 # PROJECT_CONTEXT — Strona na Wesele (Daniel & Zuzia)
 
-**Wersja 1.1 — 08.10.2026**
+**Wersja 2.0 — 13.10.2026**
 
 ## 1. Opis projektu
 Strona dla zaproszonych gości: informacje o ślubie i weselu + potwierdzenie obecności (RSVP) z danymi o transporcie, noclegu, diecie, osobach towarzyszących i dzieciach.
@@ -25,7 +25,8 @@ Styl zaproszeń z inspiracji (Project files): kremowy papier, czerwone ręcznie 
 | `--card` | `#FBF8F2` | karta zaproszenia, formularz |
 | `--ink` | `#2B1E1C` | tekst |
 | `--muted` | `#76665F` | tekst pomocniczy |
-| `--red` | `#A82A2C` | ilustracje, akcenty, przyciski |
+| `--wine` | `#7A2434` | ilustracje (ujednolicone skryptem), akcenty, przyciski, pasmo |
+| `--linen` | `#E9E0D4` | tło poza kartką |
 
 Fonty: Bodoni Moda (imiona, nagłówki), EB Garamond (tekst), Pinyon Script (ozdobne).
 Grafiki: ⚠️ obecnie tymczasowe SVG rysowane przez Claude → do podmiany na grafiki z Canva Premium.
@@ -59,8 +60,11 @@ Pusty `CONFIG.scriptUrl` = tryb podglądu z przykładowymi gośćmi (nic nie zap
 - Zapis z `LockService`, ID wiersza weryfikowane razem z numerem zaproszenia.
 
 ## 7. Status
-✅ Strona i backend napisane, podgląd działa.
-⏭️ Następne kroki: (1) repo + GitHub Pages → (2) Arkusz + Apps Script → (3) podpięcie `scriptUrl`, data → (4) grafiki z Canvy → (5) domena.
+✅ Repo `bloome2115/wesele` + GitHub Pages (bloome2115.github.io/wesele)
+✅ Arkusz „Wesele — RSVP” + Apps Script wdrożony, strona podpięta, zapis przetestowany (08.10.2026)
+✅ v2.0: nowy projekt strony — koperta z pieczęcią, ilustracje z Canvy (kolor wina #7A2434), odliczanie z sekundami, kalendarz z zaznaczoną datą, „Dodaj do kalendarza”, rysunki prawdziwego miejsca
+✅ Ilustracje w pełnej rozdzielczości (eksport PNG ×2 → `tools/przygotuj_ilustracje.py` → WebP)
+⏭️ Następne kroki: (2) poprawki wizualne (faza 4) → (3) data, plan dnia, prawdziwa lista gości → (4) domena.
 
 ### ⚠️ Znane atrapy
 | Atrapa | Gdzie | Stan |
@@ -69,7 +73,8 @@ Pusty `CONFIG.scriptUrl` = tryb podglądu z przykładowymi gośćmi (nic nie zap
 | Termin RSVP `2027-05-15` | `CONFIG.rsvpDeadline` | przykładowy |
 | Plan dnia (poza 17:00) | `CONFIG.schedule` | ogólne punkty bez godzin |
 | Przykładowi goście (Kowalscy, Nowak) | Arkusz „Goście” | do zastąpienia prawdziwą listą |
-| Ilustracje | sprite SVG w `index.html` | tymczasowe |
+| Tekst „Drodzy Goście” | sekcja #zaproszenie | ogólny, do napisania przez Was |
+| Brak obrazka podglądu linku (og:image) | `<head>` | po wyborze domeny |
 | Teksty Transport / Nocleg | sekcja „Dojazd i nocleg” | ogólne, bez konkretów |
 
 ## 8. Pliki projektu
