@@ -1,6 +1,6 @@
-# PROJECT_CONTEXT — Strona na Wesele (Daniel & Zuzia)
+# PROJECT_CONTEXT — Strona na Wesele (Zuzia & Daniel)
 
-**Wersja 2.0 — 13.10.2026**
+**Wersja 2.1 — 22.10.2026**
 
 ## 1. Opis projektu
 Strona dla zaproszonych gości: informacje o ślubie i weselu + potwierdzenie obecności (RSVP) z danymi o transporcie, noclegu, diecie, osobach towarzyszących i dzieciach.
@@ -9,7 +9,7 @@ Strona dla zaproszonych gości: informacje o ślubie i weselu + potwierdzenie ob
 ## 2. Wydarzenie
 | | |
 |---|---|
-| Para | Daniel & Zuzia |
+| Para | Zuzia & Daniel (zawsze w tej kolejności) |
 | Miejsce (ceremonia + przyjęcie) | Lipniak 8, Krzczonów |
 | Godzina ceremonii | 17:00 |
 | Data | ⚠️ do uzupełnienia |
@@ -64,6 +64,7 @@ Pusty `CONFIG.scriptUrl` = tryb podglądu z przykładowymi gośćmi (nic nie zap
 ✅ Arkusz „Wesele — RSVP” + Apps Script wdrożony, strona podpięta, zapis przetestowany (08.10.2026)
 ✅ v2.0: nowy projekt strony — koperta z pieczęcią, ilustracje z Canvy (kolor wina #7A2434), odliczanie z sekundami, kalendarz z zaznaczoną datą, „Dodaj do kalendarza”, rysunki prawdziwego miejsca
 ✅ Ilustracje w pełnej rozdzielczości (eksport PNG ×2 → `tools/przygotuj_ilustracje.py` → WebP)
+✅ v2.1 (22.10): bez koperty i bez ilustracji pojedynczych przedmiotów; tylko sceny z Lipniaka (Canva 9–18) + monogram ZD z wisienkami (19); wejście = monogram wyostrza się, imiona się rozsuwają; plan dnia w łukowych „oknach”; sceny jako WebP na białym tle + mix-blend-mode: multiply (≈1 MB łącznie)
 ⏭️ Następne kroki: (2) poprawki wizualne (faza 4) → (3) data, plan dnia, prawdziwa lista gości → (4) domena.
 
 ### ⚠️ Znane atrapy
@@ -94,3 +95,5 @@ Wesele/
 ## 10. Pułapki
 - Separator argumentów formuł zależy od ustawień regionalnych arkusza (PL: `;`) — także przy `setFormulas()`. Formuła z `,` w polskim arkuszu = `#ERROR!`. Rozwiązanie: `argSeparator_()` sprawdza separator na próbnej formule (08.10.2026).
 - Po każdej zmianie `.gs`: **Nowa wersja** wdrożenia, potem `/exec?action=rsvpVersion` (Playbook §11).
+
+- Sceny z przezroczystością ważyły ~4 MB; spłaszczenie na biel + `mix-blend-mode: multiply` = ~1 MB. Uwaga: przodek sceny nie może mieć `transform`/`opacity` (izoluje mieszanie → widać białe tło) — animujemy same obrazki (22.10.2026).
