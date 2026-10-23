@@ -1,6 +1,6 @@
 # PROJECT_CONTEXT — Strona na Wesele (Zuzia & Daniel)
 
-**Wersja 2.2 — 23.10.2026**
+**Wersja 2.3 — 23.10.2026**
 
 ## 1. Opis projektu
 Strona dla zaproszonych gości: informacje o ślubie i weselu + potwierdzenie obecności (RSVP) z danymi o transporcie, noclegu, diecie, osobach towarzyszących i dzieciach.
@@ -28,7 +28,7 @@ Styl zaproszeń z inspiracji (Project files): kremowy papier, czerwone ręcznie 
 | `--wine` | `#7A2434` | ilustracje (ujednolicone skryptem), akcenty, przyciski, pasmo |
 | `--linen` | `#CFE0EE` | baby blue — tło poza kartką (komputer) |
 
-Fonty: Bodoni Moda (imiona, nagłówki), EB Garamond (tekst), Pinyon Script (ozdobne).
+Fonty: **Architects Daughter** (wersaliki: imiona, daty, etykiety, przyciski — darmowy zamiennik Dreaming Outloud All Caps z Canvy, który nie ma licencji web), **Marck Script** (napisy odręczne — ten sam co w Canvie), EB Garamond (tekst ciągły). Wszystkie z Google Fonts, z polskimi znakami.
 Grafiki: ⚠️ obecnie tymczasowe SVG rysowane przez Claude → do podmiany na grafiki z Canva Premium.
 
 ## 4. Struktura strony

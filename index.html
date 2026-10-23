@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#7A2434">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Pinyon+Script&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Marck+Script&display=swap">
 <style>
 /* Układ: jedna „kartka zaproszenia” (~600 px) na lnianym tle. Ilustracje to wyłącznie rysunki z Lipniaka
    (sceny w łukowych „oknach” lub na całą szerokość) + monogram z wisienkami. Jedno winne pasmo (odliczanie + kalendarz).
@@ -29,9 +29,9 @@
   --wine-soft:rgba(122,36,52,.08);
   --line:rgba(122,36,52,.3);
   --cream-on-wine:#F6EBDD;
-  --f-display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --f-display:"Architects Daughter","Segoe Print","Bradley Hand",cursive;
   --f-body:"EB Garamond","Garamond","Times New Roman",serif;
-  --f-script:"Pinyon Script","Snell Roundhand","Apple Chancery",cursive;
+  --f-script:"Marck Script","Snell Roundhand","Apple Chancery",cursive;
   --ease:cubic-bezier(.22,.7,.2,1);
   --arch:50% 50% 0 0 / 38% 38% 0 0;
   color-scheme:light;
@@ -53,7 +53,7 @@ a{color:var(--wine);text-underline-offset:3px;text-decoration-thickness:1px}
   .sheet{box-shadow:0 2px 0 rgba(44,27,30,.04),0 30px 60px -30px rgba(70,30,30,.45)}
 }
 .sec{padding:76px 24px;text-align:center;position:relative}
-.eyebrow{font-family:var(--f-display);font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);margin:0}
+.eyebrow{font-family:var(--f-display);font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:0}
 .script{font-family:var(--f-script);font-weight:400;color:var(--wine);font-size:clamp(2.6rem,11vw,3.4rem);line-height:1.05;margin:.1em 0 .35em}
 .lead{max-width:34ch;margin:0 auto;font-size:1.2rem}
 .muted{color:var(--muted)}
@@ -71,9 +71,9 @@ a{color:var(--wine);text-underline-offset:3px;text-decoration-thickness:1px}
 .hero{padding:56px 24px 64px;text-align:center}
 .hero .mono{width:min(54%,230px);margin:0 auto 28px}
 .kicker{font-style:italic;color:var(--muted);font-size:1.12rem;margin:0}
-.names{margin:10px 0 0;font-family:var(--f-display);font-weight:400;text-transform:uppercase;letter-spacing:.22em;font-size:clamp(2.1rem,9.6vw,3rem);line-height:1.05;display:grid;justify-items:center}
+.names{margin:10px 0 0;font-family:var(--f-display);font-weight:400;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(2.2rem,10vw,3.1rem);line-height:1.1;display:grid;justify-items:center}
 .names .amp{font-family:var(--f-script);text-transform:none;letter-spacing:0;color:var(--wine);font-size:1.2em;line-height:.85;margin:.04em 0}
-.hdate{font-family:var(--f-display);letter-spacing:.2em;font-size:clamp(.9rem,3.6vw,1.02rem);margin:22px 0 0;display:flex;justify-content:center;gap:.8em;font-variant-numeric:lining-nums tabular-nums}
+.hdate{font-family:var(--f-display);letter-spacing:.12em;font-size:clamp(1.05rem,4.2vw,1.2rem);margin:22px 0 0;display:flex;justify-content:center;gap:.8em;font-variant-numeric:lining-nums tabular-nums}
 .hdate i{font-style:normal;color:var(--wine)}
 .hmeta{margin:4px 0 0;font-style:italic;color:var(--muted)}
 .hero .arch-w{width:min(100%,400px);margin-top:40px}
@@ -89,7 +89,7 @@ a{color:var(--wine);text-underline-offset:3px;text-decoration-thickness:1px}
 .hero .hplace{animation:fade 1s 1.9s both}
 @keyframes focus{from{opacity:0;filter:blur(10px);transform:scale(.94)}to{opacity:1;filter:none;transform:none}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
-@keyframes spread{from{letter-spacing:.04em;opacity:0}to{letter-spacing:.22em;opacity:1}}
+@keyframes spread{from{letter-spacing:-.02em;opacity:0}to{letter-spacing:.08em;opacity:1}}
 
 /* ujawnianie przy przewijaniu — tylko elementy bez scen w środku */
 .armed .rv{opacity:0;transform:translateY(14px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
@@ -107,13 +107,13 @@ a{color:var(--wine);text-underline-offset:3px;text-decoration-thickness:1px}
 .count .u{display:grid;justify-items:center;min-width:2.4ch}
 .count b{font-family:var(--f-display);font-weight:400;font-size:clamp(2.4rem,12vw,3.5rem);line-height:1}
 .count .sep{font-family:var(--f-display);font-size:clamp(2rem,9vw,2.8rem);line-height:1;opacity:.45}
-.count span{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;margin-top:10px;opacity:.75}
+.count span{font-family:var(--f-display);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin-top:10px;opacity:.75}
 .cal{margin:48px auto 0;max-width:360px;background:var(--card);color:var(--ink);padding:30px 22px 22px;transform:rotate(-1.2deg);box-shadow:0 18px 36px -18px rgba(20,4,8,.6);position:relative}
 .cal .m{width:74px;margin:0 auto 8px}
 .cal h3{margin:0;font-family:var(--f-script);font-weight:400;color:var(--wine);font-size:2.4rem;line-height:1}
-.cal .yr{font-family:var(--f-display);font-size:.72rem;letter-spacing:.32em;color:var(--muted);margin:2px 0 14px}
+.cal .yr{font-family:var(--f-display);font-size:.9rem;letter-spacing:.2em;color:var(--muted);margin:2px 0 14px}
 .grid{display:grid;grid-template-columns:repeat(7,1fr);row-gap:6px;font-variant-numeric:tabular-nums lining-nums}
-.grid .dn{font-family:var(--f-display);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-bottom:6px}
+.grid .dn{font-family:var(--f-display);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-bottom:6px}
 .grid .d{position:relative;font-size:1.02rem;height:34px;display:grid;place-items:center}
 .grid .d.we{color:var(--wine)}
 .grid .d.hit{color:var(--wine);font-weight:500}
@@ -123,7 +123,7 @@ a{color:var(--wine);text-underline-offset:3px;text-decoration-thickness:1px}
 .armed .cal.on .grid .d.hit .ring{stroke-dashoffset:0}
 .grid .d.hit .heart{fill:var(--wine);stroke:none}
 .addcal{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:30px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--f-display);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;padding:14px 22px;cursor:pointer;border:1px solid var(--wine);background:var(--wine);color:var(--paper);text-decoration:none;transition:background .2s,color .2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--f-display);font-size:.88rem;letter-spacing:.12em;text-transform:uppercase;padding:13px 22px;cursor:pointer;border:1px solid var(--wine);background:var(--wine);color:var(--paper);text-decoration:none;transition:background .2s,color .2s}
 .btn:hover{background:var(--wine-deep)}
 .btn.ghost{background:transparent;color:var(--wine)}
 .btn.ghost:hover{background:var(--wine-soft)}
@@ -132,11 +132,11 @@ a{color:var(--wine);text-underline-offset:3px;text-decoration-thickness:1px}
 .btn[disabled]{opacity:.55;cursor:progress}
 
 /* ---------- miejsce ---------- */
-.addr{font-family:var(--f-display);letter-spacing:.14em;text-transform:uppercase;font-size:.86rem;margin:0}
+.addr{font-family:var(--f-display);letter-spacing:.1em;text-transform:uppercase;font-size:1rem;margin:0}
 .venue{margin:40px 0 0;display:grid;gap:12px;justify-items:center}
 .venue img{width:100%;max-width:540px}
 .venue figcaption{display:grid;gap:2px}
-.venue figcaption b,.tl b,.info h3{font-family:var(--f-display);font-weight:400;letter-spacing:.2em;text-transform:uppercase;font-size:.82rem}
+.venue figcaption b,.tl b,.info h3{font-family:var(--f-display);font-weight:400;letter-spacing:.12em;text-transform:uppercase;font-size:.98rem}
 .venue figcaption span{font-style:italic;color:var(--muted)}
 .venue + .venue{margin-top:52px}
 
@@ -172,7 +172,7 @@ a{color:var(--wine);text-underline-offset:3px;text-decoration-thickness:1px}
 .mono-s{width:92px;margin:0 auto}
 .demo{background:var(--wine-soft);font-size:.95rem;padding:10px 14px;margin:0 0 22px;border-left:2px solid var(--wine)}
 .field{display:grid;gap:8px;margin-bottom:22px}
-.field > label,.legend{font-family:var(--f-display);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.field > label,.legend{font-family:var(--f-display);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 fieldset{border:0;padding:0;margin:0 0 22px;min-width:0}
 legend{padding:0;margin-bottom:10px}
 input[type=text],textarea{width:100%;font:inherit;color:var(--ink);background:transparent;border:0;border-bottom:1px solid rgba(44,27,30,.3);padding:8px 2px;border-radius:0}
@@ -203,12 +203,12 @@ textarea{min-height:80px;resize:vertical;border:1px solid rgba(44,27,30,.2);padd
 .linkbtn{background:none;border:0;color:var(--wine);font:inherit;font-style:italic;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:0}
 
 /* ---------- kontakt + finał ---------- */
-.phone{font-family:var(--f-display);font-size:1.5rem;letter-spacing:.08em;margin:6px 0 14px;font-variant-numeric:lining-nums}
+.phone{font-family:var(--f-display);font-size:1.5rem;letter-spacing:.04em;margin:6px 0 14px;font-variant-numeric:lining-nums}
 .phone a{color:var(--ink);text-decoration:none}
 .finale{padding:10px 0 70px;text-align:center}
 .finale .scene{width:100%}
 .finale .script{font-size:clamp(3rem,13vw,4rem);margin:26px 0 0}
-.finale .sig{font-family:var(--f-display);letter-spacing:.28em;text-transform:uppercase;font-size:.78rem;color:var(--muted);margin:4px 0 0}
+.finale .sig{font-family:var(--f-display);letter-spacing:.16em;text-transform:uppercase;font-size:.95rem;color:var(--muted);margin:4px 0 0}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
