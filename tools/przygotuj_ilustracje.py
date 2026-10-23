@@ -15,9 +15,10 @@ MAP = {
     18: ('sala', 1100, 70),
     20: ('monogram', 640, 90), 21: ('wieza_wisnie', 640, 72), 22: ('tort', 640, 72),
     23: ('bukiet_1', 640, 70), 24: ('bukiet_2', 640, 70),
+    2: ('kieliszek', 480, 85), 5: ('butelka', 360, 85),
 }
 ONLY = {int(x) for x in sys.argv[3:]}  # opcjonalnie: tylko wybrane numery
-KEEP_ALPHA = {'monogram'}
+KEEP_ALPHA = {'monogram', 'kieliszek', 'butelka'}  # obracane / nakładane na linię
 src, dst = sys.argv[1], sys.argv[2]
 os.makedirs(dst, exist_ok=True)
 

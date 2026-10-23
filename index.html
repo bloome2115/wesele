@@ -52,7 +52,7 @@ a{color:var(--wine);text-underline-offset:3px;text-decoration-thickness:1px}
   body{padding-block:40px}
   .sheet{box-shadow:0 2px 0 rgba(44,27,30,.04),0 30px 60px -30px rgba(70,30,30,.45)}
 }
-.sec{padding:76px 24px;text-align:center;position:relative}
+.sec{--g:24px;padding:76px var(--g);text-align:center;position:relative}
 .eyebrow{font-family:var(--f-display);font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:0}
 .script{font-family:var(--f-script);font-weight:400;color:var(--wine);font-size:clamp(2.6rem,11vw,3.4rem);line-height:1.05;margin:.1em 0 .35em}
 .lead{max-width:34ch;margin:0 auto;font-size:1.2rem}
@@ -68,26 +68,22 @@ a{color:var(--wine);text-underline-offset:3px;text-decoration-thickness:1px}
 .arch img{width:100%;height:100%;object-fit:cover}
 
 /* ---------- hero ---------- */
-.hero{padding:56px 24px 64px;text-align:center}
-.hero .mono{width:min(54%,230px);margin:0 auto 28px}
-.kicker{font-style:italic;color:var(--muted);font-size:1.12rem;margin:0}
-.names{margin:10px 0 0;font-family:var(--f-display);font-weight:400;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(2.2rem,10vw,3.1rem);line-height:1.1;display:grid;justify-items:center}
+.hero{padding:64px 24px 0;text-align:center}
+.tagline{font-family:var(--f-script);color:var(--wine);font-size:clamp(3rem,13vw,4.2rem);line-height:1.05;margin:0}
+.names{margin:18px 0 0;font-family:var(--f-display);font-weight:400;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(3rem,14vw,4.4rem);line-height:1.08;display:grid;justify-items:center}
 .names .amp{font-family:var(--f-script);text-transform:none;letter-spacing:0;color:var(--wine);font-size:1.2em;line-height:.85;margin:.04em 0}
-.hdate{font-family:var(--f-display);letter-spacing:.12em;font-size:clamp(1.05rem,4.2vw,1.2rem);margin:22px 0 0;display:flex;justify-content:center;gap:.8em;font-variant-numeric:lining-nums tabular-nums}
+.hdate{font-family:var(--f-display);letter-spacing:.12em;font-size:clamp(1.35rem,5.6vw,1.7rem);margin:26px 0 0;display:flex;justify-content:center;gap:.8em;font-variant-numeric:lining-nums tabular-nums}
 .hdate i{font-style:normal;color:var(--wine)}
-.hmeta{margin:4px 0 0;font-style:italic;color:var(--muted)}
-.hero .arch-w{width:min(100%,400px);margin-top:40px}
-.hero .arch{aspect-ratio:5/6}
-.hero .arch img{object-position:50% 40%}
-.hplace{font-family:var(--f-script);font-size:clamp(1.8rem,7.4vw,2.2rem);margin:18px 0 0;line-height:1.2}
+.hmeta{margin:6px 0 0;font-style:italic;color:var(--muted);font-size:clamp(1.1rem,4.4vw,1.3rem);text-wrap:balance}
+/* ilustracja od krawędzi do krawędzi kartki */
+.bleed{width:calc(100% + 2 * var(--g,24px));max-width:none;margin-inline:calc(-1 * var(--g,24px))}
+.hero .bleed{margin-top:44px}
 /* wejście — subtelne, bez blokowania strony */
-.hero .mono{animation:focus 1.8s var(--ease) both}
-.hero .kicker{animation:fade 1s .7s both}
-.hero .names{animation:spread 1.8s .8s var(--ease) both}
-.hero .hdate,.hero .hmeta{animation:fade 1s 1.3s both}
-.hero .arch img{animation:fade 1.6s 1.5s both}
-.hero .hplace{animation:fade 1s 1.9s both}
-@keyframes focus{from{opacity:0;filter:blur(10px);transform:scale(.94)}to{opacity:1;filter:none;transform:none}}
+.hero .tagline{animation:focus 1.6s var(--ease) both}
+.hero .names{animation:spread 1.8s .5s var(--ease) both}
+.hero .hdate,.hero .hmeta{animation:fade 1s 1.1s both}
+.hero .bleed{animation:fade 1.6s 1.3s both}
+@keyframes focus{from{opacity:0;filter:blur(8px);transform:scale(.96)}to{opacity:1;filter:none;transform:none}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 @keyframes spread{from{letter-spacing:-.02em;opacity:0}to{letter-spacing:.08em;opacity:1}}
 
@@ -108,7 +104,14 @@ a{color:var(--wine);text-underline-offset:3px;text-decoration-thickness:1px}
 .count b{font-family:var(--f-display);font-weight:400;font-size:clamp(2.4rem,12vw,3.5rem);line-height:1}
 .count .sep{font-family:var(--f-display);font-size:clamp(2rem,9vw,2.8rem);line-height:1;opacity:.45}
 .count span{font-family:var(--f-display);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin-top:10px;opacity:.75}
-.cal{margin:48px auto 0;max-width:360px;background:var(--card);color:var(--ink);padding:30px 22px 22px;transform:rotate(-1.2deg);box-shadow:0 18px 36px -18px rgba(20,4,8,.6);position:relative}
+/* wcięte (wklęsłe) rogi — maska z czterema kółkami w narożnikach */
+.notch{--r:16px;-webkit-mask:var(--notch);mask:var(--notch);
+  --notch:radial-gradient(circle var(--r) at 0 0,#0000 98%,#000) top left/51% 51% no-repeat,
+          radial-gradient(circle var(--r) at 100% 0,#0000 98%,#000) top right/51% 51% no-repeat,
+          radial-gradient(circle var(--r) at 0 100%,#0000 98%,#000) bottom left/51% 51% no-repeat,
+          radial-gradient(circle var(--r) at 100% 100%,#0000 98%,#000) bottom right/51% 51% no-repeat}
+.calw{margin:48px auto 0;max-width:360px;filter:drop-shadow(0 16px 18px rgba(20,4,8,.35))}
+.cal{background:var(--card);color:var(--ink);padding:30px 22px 22px;transform:rotate(-1.2deg);position:relative;--r:20px}
 .cal .m{width:74px;margin:0 auto 8px}
 .cal h3{margin:0;font-family:var(--f-script);font-weight:400;color:var(--wine);font-size:2.4rem;line-height:1}
 .cal .yr{font-family:var(--f-display);font-size:.9rem;letter-spacing:.2em;color:var(--muted);margin:2px 0 14px}
@@ -117,42 +120,64 @@ a{color:var(--wine);text-underline-offset:3px;text-decoration-thickness:1px}
 .grid .d{position:relative;font-size:1.02rem;height:34px;display:grid;place-items:center}
 .grid .d.we{color:var(--wine)}
 .grid .d.hit{color:var(--wine);font-weight:500}
-.grid .d.hit svg{position:absolute;inset:-9px -6px;width:calc(100% + 12px);height:calc(100% + 18px);overflow:visible;fill:none;stroke:var(--wine);stroke-width:1.6;stroke-linecap:round}
+.grid .d.hit svg{position:absolute;inset:-9px -6px;width:calc(100% + 12px);height:calc(100% + 18px);overflow:visible;fill:none;stroke:var(--wine);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .grid .d.hit .ring{stroke-dasharray:1;stroke-dashoffset:0}
 .armed .grid .d.hit .ring{stroke-dashoffset:1;transition:stroke-dashoffset 1.4s .3s var(--ease)}
-.armed .cal.on .grid .d.hit .ring{stroke-dashoffset:0}
-.grid .d.hit .heart{fill:var(--wine);stroke:none}
+.armed .calw.on .grid .d.hit .ring{stroke-dashoffset:0}
 .addcal{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:30px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--f-display);font-size:.88rem;letter-spacing:.12em;text-transform:uppercase;padding:13px 22px;cursor:pointer;border:1px solid var(--wine);background:var(--wine);color:var(--paper);text-decoration:none;transition:background .2s,color .2s}
+.btn{--r:9px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--f-display);font-size:.9rem;letter-spacing:.12em;text-transform:uppercase;padding:14px 26px;cursor:pointer;border:0;background:var(--wine);color:var(--paper);text-decoration:none;transition:background .2s,color .2s;
+  -webkit-mask:var(--notch);mask:var(--notch);
+  --notch:radial-gradient(circle var(--r) at 0 0,#0000 98%,#000) top left/51% 51% no-repeat,
+          radial-gradient(circle var(--r) at 100% 0,#0000 98%,#000) top right/51% 51% no-repeat,
+          radial-gradient(circle var(--r) at 0 100%,#0000 98%,#000) bottom left/51% 51% no-repeat,
+          radial-gradient(circle var(--r) at 100% 100%,#0000 98%,#000) bottom right/51% 51% no-repeat}
 .btn:hover{background:var(--wine-deep)}
-.btn.ghost{background:transparent;color:var(--wine)}
-.btn.ghost:hover{background:var(--wine-soft)}
-.band .btn.ghost{color:var(--cream-on-wine);border-color:rgba(246,235,221,.55)}
-.band .btn.ghost:hover{background:rgba(246,235,221,.1)}
+.btn.ghost{background:#EFE3D6;color:var(--wine)}
+.btn.ghost:hover{background:#E6D5C4}
+.band .btn.ghost{background:var(--card);color:var(--wine)}
+.band .btn.ghost:hover{background:#F1E6DA}
 .btn[disabled]{opacity:.55;cursor:progress}
 
 /* ---------- miejsce ---------- */
 .addr{font-family:var(--f-display);letter-spacing:.1em;text-transform:uppercase;font-size:1rem;margin:0}
-.venue{margin:40px 0 0;display:grid;gap:12px;justify-items:center}
-.venue img{width:100%;max-width:540px}
-.venue figcaption{display:grid;gap:2px}
-.venue figcaption b,.tl b,.info h3{font-family:var(--f-display);font-weight:400;letter-spacing:.12em;text-transform:uppercase;font-size:.98rem}
-.venue figcaption span{font-style:italic;color:var(--muted)}
-.venue + .venue{margin-top:52px}
+.info h3{font-family:var(--f-display);font-weight:400;letter-spacing:.12em;text-transform:uppercase;font-size:.98rem}
 
-/* ---------- plan dnia: łuki naprzemiennie ---------- */
-.tl{list-style:none;margin:20px auto 0;padding:0;display:grid;gap:44px}
-.tl li{display:grid;gap:18px;justify-items:center}
-.tl .arch-w{width:min(72%,250px)}
-.tl .txt{display:grid;gap:4px;justify-items:center}
-.tl .t{font-family:var(--f-display);color:var(--wine);font-size:1.7rem;line-height:1;font-variant-numeric:lining-nums}
-.tl .t.w{font-family:var(--f-body);font-style:italic;font-size:1.25rem}
-.tl .n{font-style:italic;color:var(--muted);max-width:26ch}
-@media (min-width:500px){
-  .tl li{grid-template-columns:1fr 1fr;align-items:center;gap:26px}
-  .tl .arch-w{width:100%}
-  .tl li:nth-child(even) .arch-w{order:2}
-}
+/* ---------- klimat i stroje ---------- */
+.mood{font-family:var(--f-body);font-style:italic;color:var(--wine);font-size:clamp(1.45rem,6vw,1.85rem);line-height:1.35;max-width:24ch;margin:0 auto;text-wrap:balance}
+#klimat .bleed{margin-top:36px;margin-bottom:30px}
+.dress{max-width:36ch;margin:0 auto;font-size:1.3rem;line-height:1.55}
+.palette{list-style:none;margin:34px auto 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:22px 6px;max-width:360px}
+@media (min-width:520px){.palette{max-width:520px}}
+.palette li{width:96px}
+.palette li{display:grid;justify-items:center;gap:8px}
+.dot{width:58px;aspect-ratio:1;border-radius:49% 51% 47% 53% / 52% 48% 52% 48%;background:var(--c);position:relative;overflow:hidden;
+  box-shadow:inset 0 -4px 8px rgba(0,0,0,.08),inset 0 3px 6px rgba(255,255,255,.25)}
+.dot::after{content:"";position:absolute;inset:0;opacity:.35;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.palette span{font-family:var(--f-display);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);line-height:1.2}
+
+/* ---------- plan dnia: strużka z butelki do kieliszka ---------- */
+.pour{position:relative;max-width:520px;margin:6px auto 0;padding:190px 0 210px}
+.pour .bottle{position:absolute;width:62px;top:-18px;left:calc(50% - 92px);transform:rotate(135deg);transform-origin:50% 50%}
+.pour .glass{position:absolute;width:130px;bottom:0;left:calc(50% - 58px)}
+.stream{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.stream path{fill:none;stroke:var(--wine);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0}
+.stream circle{fill:var(--wine)}
+.armed .pour .stream path{stroke-dashoffset:1;transition:stroke-dashoffset 3.2s cubic-bezier(.45,.05,.4,1)}
+.armed .pour.on .stream path{stroke-dashoffset:0}
+.tl{list-style:none;margin:0;padding:0;display:grid;gap:30px;position:relative}
+.tl li{width:50%;display:grid;gap:2px;align-content:center;min-height:56px}
+.tl li:nth-child(odd){margin-left:50%;padding-left:32px;text-align:left;justify-items:start}
+.tl li:nth-child(even){padding-right:32px;text-align:right;justify-items:end}
+.tl .t{font-family:var(--f-display);color:var(--wine);font-size:1.15rem;line-height:1;letter-spacing:.06em}
+.tl b{font-family:var(--f-display);font-weight:400;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(1rem,4.2vw,1.2rem);line-height:1.2}
+.tl .n{font-family:var(--f-script);color:var(--wine);font-size:clamp(1.15rem,4.8vw,1.35rem);line-height:1.15}
+.tl li.big b{font-size:clamp(1.3rem,5.6vw,1.6rem)}
+.tl li.big .n{font-size:clamp(1.3rem,5.4vw,1.55rem)}
+.armed .tl li{opacity:0;transition:opacity .9s var(--ease)}
+.armed .pour.on .tl li{opacity:1}
+
+/* ---------- miejsce ---------- */
+.place-note{margin:10px auto 0;max-width:30ch;font-size:1.2rem}
 
 /* ---------- dojazd i nocleg ---------- */
 .info{display:grid;gap:8px;justify-items:center;max-width:36ch;margin:0 auto}
@@ -162,13 +187,13 @@ a{color:var(--wine);text-underline-offset:3px;text-decoration-thickness:1px}
 .flowers{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:0;max-width:420px;margin:10px auto -6px;padding:0 30px}
 .flowers .b1{transform:rotate(-9deg) translateX(10%)}
 .flowers .b2{transform:rotate(9deg) translateX(-10%)}
-/* dwa łuki z kwiatami nad „Drodzy Goście” — ucięte bukiety tylko w ramkach */
-.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:380px;margin:0 auto 34px}
-.duo .arch{aspect-ratio:3/4}
-.duo .arch img{object-position:50% 20%}
+/* „Drodzy Goście” */
+.welcome .script{font-size:clamp(3.2rem,14vw,4.3rem)}
+.welcome .lead{font-size:clamp(1.25rem,5vw,1.42rem);max-width:36ch}
 
 /* ---------- RSVP ---------- */
-.rsvpcard{position:relative;background:var(--card);margin:34px auto 0;max-width:520px;padding:clamp(34px,7vw,50px) clamp(20px,6vw,40px) clamp(30px,6vw,42px);text-align:left;border:1px solid var(--line);outline:1px solid var(--line);outline-offset:-8px}
+.rsvpw{margin:34px auto 0;max-width:520px;filter:drop-shadow(0 12px 16px rgba(60,20,30,.12))}
+.rsvpcard{position:relative;background:var(--card);padding:clamp(34px,7vw,50px) clamp(20px,6vw,40px) clamp(30px,6vw,42px);text-align:left;--r:20px}
 .mono-s{width:92px;margin:0 auto}
 .demo{background:var(--wine-soft);font-size:.95rem;padding:10px 14px;margin:0 0 22px;border-left:2px solid var(--wine)}
 .field{display:grid;gap:8px;margin-bottom:22px}
@@ -215,7 +240,7 @@ textarea{min-height:80px;resize:vertical;border:1px solid rgba(44,27,30,.2);padd
   *,*::before,*::after{animation:none!important;transition:none!important}
   .armed .rv,.armed img.rvi{opacity:1;transform:none}
 }
-@media (max-width:400px){ .sec{padding-inline:18px} }
+@media (max-width:400px){ .sec{--g:18px} }
 </style>
 </head>
 <body>
@@ -223,25 +248,16 @@ textarea{min-height:80px;resize:vertical;border:1px solid rgba(44,27,30,.2);padd
 
   <!-- ============ HERO ============ -->
   <header class="hero" id="hero">
-    <img class="mono" src="assets/img/monogram.webp" alt="Monogram Z i D z wisienkami" width="640" height="327">
-    <p class="kicker">Z radością zapraszamy na nasz ślub</p>
+    <p class="tagline">Będzie ślub!</p>
     <h1 class="names"><span>Zuzia</span><span class="amp">&amp;</span><span>Daniel</span></h1>
     <p class="hdate" id="hdate"></p>
     <p class="hmeta" id="hmeta"></p>
-    <div class="arch-w">
-      <div class="arch"><img class="scene" src="assets/img/wrota.webp" alt="Rysunek: widok przez otwarte wrota stodoły na łąki i krzesła w ogrodzie" width="1000" height="1025"></div>
-    </div>
-    <p class="hplace">Lipniak 8, Krzczonów</p>
+    <img class="scene bleed" src="assets/img/ceremonia.webp" alt="Rysunek: miejsce ceremonii pod rozłożystym drzewem z udrapowanymi tkaninami, podest i rzędy krzeseł" width="1000" height="1329">
   </header>
 
   <!-- ============ SŁOWO OD NAS ============ -->
-  <section class="sec" id="zaproszenie" style="padding-top:12px">
-    <div class="duo">
-      <div class="arch-w"><div class="arch"><img class="scene rvi" src="assets/img/kwiaty_beczka.webp" alt="" loading="lazy"></div></div>
-      <div class="arch-w"><div class="arch"><img class="scene rvi" src="assets/img/kwiaty_skrzynia.webp" alt="" loading="lazy"></div></div>
-    </div>
+  <section class="sec welcome" id="zaproszenie" style="padding-top:28px">
     <div class="rv">
-      <p class="eyebrow">Zaproszenie</p>
       <h2 class="script">Drodzy Goście</h2>
       <p class="lead">Z ogromną radością zapraszamy Was do wspólnego świętowania dnia, w którym powiemy sobie „tak”. Będzie nam niezmiernie miło, jeśli spędzicie go razem z nami.</p>
     </div>
@@ -251,11 +267,13 @@ textarea{min-height:80px;resize:vertical;border:1px solid rgba(44,27,30,.2);padd
   <section class="band" id="kiedy">
     <p class="eyebrow">Do naszego ślubu zostało</p>
     <div class="count" id="count"></div>
-    <div class="cal rv" id="cal">
-      <img class="m" src="assets/img/monogram.webp" alt="">
-      <h3 id="calMonth"></h3>
-      <p class="yr" id="calYear"></p>
-      <div class="grid" id="calGrid"></div>
+    <div class="calw rv">
+      <div class="cal notch" id="cal">
+        <img class="m" src="assets/img/monogram.webp" alt="">
+        <h3 id="calMonth"></h3>
+        <p class="yr" id="calYear"></p>
+        <div class="grid" id="calGrid"></div>
+      </div>
     </div>
     <div class="addcal">
       <a class="btn ghost" id="gcal" target="_blank" rel="noopener">Google Kalendarz</a>
@@ -263,33 +281,36 @@ textarea{min-height:80px;resize:vertical;border:1px solid rgba(44,27,30,.2);padd
     </div>
   </section>
 
-  <!-- ============ MIEJSCE ============ -->
-  <section class="sec" id="miejsce">
-    <div class="rv">
-      <p class="eyebrow">Miejsce</p>
-      <h2 class="script">Lipniak</h2>
-      <p class="addr">Lipniak 8 · Krzczonów</p>
-    </div>
-    <figure class="venue">
-      <img class="scene rvi" src="assets/img/ceremonia.webp" alt="Rysunek: miejsce ceremonii pod rozłożystym drzewem z udrapowanymi tkaninami, podest i rzędy krzeseł" width="1000" height="1329" loading="lazy">
-      <figcaption><b>Ceremonia</b><span>godz. 17:00</span></figcaption>
-    </figure>
-    <figure class="venue">
-      <img class="scene rvi" src="assets/img/stodola.webp" alt="Rysunek: stodoła z zadaszonym tarasem wśród łąki" width="1000" height="871" loading="lazy">
-      <figcaption><b>Przyjęcie weselne</b><span>zaraz po ceremonii, w tym samym miejscu</span></figcaption>
-    </figure>
-    <p style="margin-top:36px"><a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Lipniak%208%2C%20Krzczon%C3%B3w" target="_blank" rel="noopener">Pokaż na mapie</a></p>
+  <!-- ============ KLIMAT I STROJE ============ -->
+  <section class="sec" id="klimat">
+    <p class="mood rv">Świętujemy w sielskim stylu — w klimatycznej stodole, blisko natury i z dużą dawką swobody.</p>
+    <img class="scene bleed rvi" src="assets/img/stodola.webp" alt="Rysunek: stodoła z zadaszonym tarasem wśród łąki" width="1000" height="871" loading="lazy">
+    <p class="dress rv">Wybierzcie stroje, w których będziecie czuć się pięknie i komfortowo, pamiętając, że część uroczystości i zabawy odbędzie się na świeżym powietrzu.</p>
+    <ul class="palette rv" id="palette" aria-label="Przykładowa paleta kolorów strojów"></ul>
   </section>
 
   <div class="rule"><img src="assets/img/monogram.webp" alt=""></div>
 
   <!-- ============ PLAN DNIA ============ -->
   <section class="sec" id="plan">
-    <div class="rv">
-      <p class="eyebrow">Harmonogram</p>
-      <h2 class="script">Plan dnia</h2>
+    <h2 class="script rv">Plan dnia</h2>
+    <div class="pour" id="pour">
+      <svg class="stream" id="stream" aria-hidden="true"></svg>
+      <img class="bottle" src="assets/img/butelka.webp" alt="" width="360" height="1083">
+      <ol class="tl" id="timeline"></ol>
+      <img class="glass" src="assets/img/kieliszek.webp" alt="" width="480" height="499">
     </div>
-    <ol class="tl" id="timeline"></ol>
+  </section>
+
+  <!-- ============ MIEJSCE ============ -->
+  <section class="sec" id="miejsce" style="padding-top:20px">
+    <div class="rv">
+      <p class="eyebrow">Miejsce</p>
+      <h2 class="script">Lipniak</h2>
+      <p class="addr">Lipniak 8 · Krzczonów</p>
+      <p class="place-note">Ceremonia i przyjęcie odbywają się w tym samym miejscu.</p>
+    </div>
+    <p style="margin-top:28px"><a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Lipniak%208%2C%20Krzczon%C3%B3w" target="_blank" rel="noopener">Pokaż na mapie</a></p>
   </section>
 
   <!-- ============ DOJAZD I NOCLEG ============ -->
@@ -317,10 +338,10 @@ textarea{min-height:80px;resize:vertical;border:1px solid rgba(44,27,30,.2);padd
     <p class="eyebrow">RSVP</p>
     <h2 class="script">Potwierdź obecność</h2>
     <p class="muted" id="rsvpBy" style="margin:0"></p>
-    <div class="rsvpcard">
+    <div class="rsvpw"><div class="rsvpcard notch">
       <p class="demo" id="demoNote" hidden>Tryb podglądu: odpowiedzi nie są nigdzie zapisywane. Wpisz np. <b>Anna Przykładowa</b>, <b>Jan Testowy</b> albo <b>Maria Wzorowa</b>.</p>
       <div id="rsvpView"></div>
-    </div>
+    </div></div>
   </section>
 
   <!-- ============ KONTAKT ============ -->
@@ -349,11 +370,23 @@ const CONFIG = {
   rsvpDeadline: "2027-06-12",
   // Adres Web App z Google Apps Script (pusty = tryb podglądu z przykładowymi gośćmi):
   scriptUrl: "https://script.google.com/macros/s/AKfycbzutSkN6sQRdFNJUhnjMvsrxab08qgzFaAYwWWCz9CJoZRSv-T4FKmZ3fJZOramuAAh/exec",
-  // Plan dnia — img: nazwa sceny z assets/img (bez .webp)
+  // Plan dnia — t: godzina (pusta = bez godziny), big: wyróżniony punkt
   schedule: [
-    { t: "17:00", title: "Ceremonia", note: "Prosimy o przybycie ok. 15 minut wcześniej.", img: "kurtyna", alt: "Widok spod kurtyny na ogród" },
-    { t: "po ceremonii", title: "Życzenia i toast", note: "Lampka szampana na dobry początek.", img: "bar", alt: "Stół z napojami i kwiatami pod lampami" },
-    { t: "wieczorem", title: "Kolacja i zabawa", note: "Do białego rana.", img: "sala_lampki", alt: "Stoły w stodole pod girlandą żarówek" }
+    { t: "16:30", title: "Zbiórka", note: "pół godziny wcześniej, serio" },
+    { t: "17:00", title: "Ceremonia", note: "ten najważniejszy moment", big: true },
+    { t: "", title: "Życzenia", note: "uściski i chusteczki" },
+    { t: "", title: "Drineczki", note: "zdrowie Pary Młodej!" },
+    { t: "", title: "Obiad", note: "w końcu!" },
+    { t: "", title: "Pierwszy taniec", note: "trzymajcie kciuki" },
+    { t: "", title: "Zabawa", note: "parkiet czeka" },
+    { t: "", title: "Tort", note: "z wiśniami? kto wie…" },
+    { t: "", title: "Więcej zabawy", note: "do białego rana" }
+  ],
+  // Paleta strojów (kropki)
+  palette: [
+    ["Błękit", "#B7CDE8"], ["Liliowy", "#C8B6DD"], ["Róż mauve", "#C99AAE"],
+    ["Szałwia", "#B8BE96"], ["Oliwka", "#8F8F5F"], ["Maślany", "#F2DD8C"],
+    ["Brzoskwinia", "#E2956D"], ["Granat", "#3F5A7E"], ["Wiśniowy", "#9E2B3A"]
   ]
 };
 /* ======================================================================= */
@@ -372,7 +405,7 @@ const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---------- hero ---------- */
 $("#hdate").innerHTML = `<span>${pad(D)}</span><i>·</i><span>${pad(M)}</span><i>·</i><span>${Y}</span>`;
-$("#hmeta").textContent = `${weekday} · godz. ${HOUR}`;
+$("#hmeta").textContent = `${weekday} · godz. ${HOUR} · Lipniak 8, Krzczonów`;
 const [ry, rm, rd] = CONFIG.rsvpDeadline.split("-").map(Number);
 $("#rsvpBy").textContent = `Prosimy o odpowiedź do ${rd} ${MONTHS_GEN[rm - 1]} ${ry}`;
 
@@ -401,8 +434,7 @@ $("#calYear").textContent = Y;
     const col = (first + d - 1) % 7;
     if (d === D){
       h += `<div class="d hit" aria-label="${d} ${MONTHS_GEN[M-1]} — nasz ślub">${d}<svg viewBox="0 0 60 50" aria-hidden="true">
-        <path class="ring" pathLength="1" d="M31 5C47 3 57 13 56 25C55 39 41 46 28 45C13 44 4 35 5 23C6 12 17 5 35 7"/>
-        <path class="heart" d="M52 6c-1.6-1.8-4.4-.8-4.4 1.6 0 2.4 3.3 4.2 4.4 5.2 1.1-1 4.4-2.8 4.4-5.2 0-2.4-2.8-3.4-4.4-1.6z"/></svg></div>`;
+        <path class="ring" pathLength="1" d="M36 6.5C49 5 57.5 14 56.5 26C55.5 38.5 43 46 29 45.5C15 45 5.5 36.5 6 24.5C6.5 13 16 5.5 28.5 4.5C35 4 41.5 6 45.5 9.5"/></svg></div>`;
     } else h += `<div class="d${col > 4 ? " we" : ""}">${d}</div>`;
   }
   $("#calGrid").innerHTML = h;
@@ -422,10 +454,39 @@ $("#calYear").textContent = Y;
   $("#ical").href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
 })();
 
-/* ---------- plan dnia ---------- */
-$("#timeline").innerHTML = CONFIG.schedule.map(s => `<li>
-  ${s.img ? `<div class="arch-w"><div class="arch"><img class="scene rvi" src="assets/img/${esc(s.img)}.webp" alt="${esc(s.alt || "")}" loading="lazy"></div></div>` : ""}
-  <div class="txt rv"><span class="t${/\d/.test(s.t) ? "" : " w"}">${esc(s.t)}</span><b>${esc(s.title)}</b><span class="n">${esc(s.note)}</span></div></li>`).join("");
+/* ---------- paleta ---------- */
+$("#palette").innerHTML = CONFIG.palette.map(([n, c]) => `<li><i class="dot" style="--c:${c}"></i><span>${esc(n)}</span></li>`).join("");
+
+/* ---------- plan dnia: strużka z butelki do kieliszka ---------- */
+$("#timeline").innerHTML = CONFIG.schedule.map(s => `<li${s.big ? ' class="big"' : ""}>
+  ${s.t ? `<span class="t">${esc(s.t)}</span>` : ""}<b>${esc(s.title)}</b><span class="n">${esc(s.note)}</span></li>`).join("");
+function drawStream(){
+  const box = $("#pour"), svg = $("#stream"), bottle = box.querySelector(".bottle"), glass = box.querySelector(".glass");
+  const W = box.clientWidth, H = box.clientHeight, cx = W / 2;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  // wylot szyjki: środek butelki + obrót 135° punktu (0, -h/2)
+  const bw = bottle.offsetWidth, bh = bottle.offsetHeight;
+  const bcx = bottle.offsetLeft + bw / 2, bcy = bottle.offsetTop + bh / 2;
+  const a = 135 * Math.PI / 180, tip = [bcx + (bh / 2 - 2) * Math.sin(a), bcy - (bh / 2 - 2) * Math.cos(a)];
+  const nodes = [...box.querySelectorAll(".tl li")].map(li => [cx, li.offsetTop + li.offsetHeight / 2 + box.querySelector(".tl").offsetTop]);
+  const end = [glass.offsetLeft + glass.offsetWidth * 0.47, glass.offsetTop + glass.offsetHeight * 0.3];
+  const pts = [tip, ...nodes, end];
+  const A = Math.min(24, W * 0.06);
+  let d = `M${tip[0].toFixed(1)} ${tip[1].toFixed(1)}`, s = 1;
+  for (let i = 1; i < pts.length; i++){
+    const [x1, y1] = pts[i - 1], [x2, y2] = pts[i], dy = y2 - y1;
+    d += ` C${(x1 + s * A).toFixed(1)} ${(y1 + dy * .4).toFixed(1)} ${(x2 + s * A).toFixed(1)} ${(y2 - dy * .4).toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
+    s = -s;
+  }
+  // kropelki przy punktach (po stronie tekstu) i nad kieliszkiem
+  const dots = nodes.map(([x, y], i) => `<circle cx="${x + (i % 2 ? -15 : 15)}" cy="${y - 6}" r="2.6"/>`).join("") +
+    [[-9, -22], [7, -34], [-3, -48]].map(([dx, dy]) => `<circle cx="${end[0] + dx}" cy="${end[1] + dy}" r="2.2"/>`).join("");
+  svg.innerHTML = `<path pathLength="1" d="${d}"/>` + dots;
+}
+drawStream();
+if (document.fonts) document.fonts.ready.then(drawStream);
+window.addEventListener("load", drawStream);
+if ("ResizeObserver" in window) new ResizeObserver(drawStream).observe($("#pour"));
 
 /* ---------- kopiowanie numeru ---------- */
 $("#copyPhone").addEventListener("click", async e => {
@@ -439,7 +500,7 @@ $("#copyPhone").addEventListener("click", async e => {
 if ("IntersectionObserver" in window && !reduce){
   document.documentElement.classList.add("armed");
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add("on"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
-  document.querySelectorAll(".rv, .rvi").forEach(el => io.observe(el));
+  document.querySelectorAll(".rv, .rvi, .pour").forEach(el => io.observe(el));
 }
 
 /* ===================== API (Apps Script lub tryb podglądu) ===================== */

@@ -1,6 +1,6 @@
 # PROJECT_CONTEXT — Strona na Wesele (Zuzia & Daniel)
 
-**Wersja 2.3 — 23.10.2026**
+**Wersja 2.4 — 23.10.2026**
 
 ## 1. Opis projektu
 Strona dla zaproszonych gości: informacje o ślubie i weselu + potwierdzenie obecności (RSVP) z danymi o transporcie, noclegu, diecie, osobach towarzyszących i dzieciach.
@@ -66,6 +66,8 @@ Pusty `CONFIG.scriptUrl` = tryb podglądu z przykładowymi gośćmi (nic nie zap
 ✅ Ilustracje w pełnej rozdzielczości (eksport PNG ×2 → `tools/przygotuj_ilustracje.py` → WebP)
 ✅ v2.1 (22.10): bez koperty i bez ilustracji pojedynczych przedmiotów; tylko sceny z Lipniaka (Canva 9–18) + monogram ZD z wisienkami (19); wejście = monogram wyostrza się, imiona się rozsuwają; plan dnia w łukowych „oknach”; sceny jako WebP na białym tle + mix-blend-mode: multiply (≈1 MB łącznie)
 ✅ v2.2 (23.10): data 24.07.2027; nowy monogram (wyraźniejsze wiśnie, Canva 20); całe bukiety (23, 24) swobodnie, ucięte (15, 16) tylko w łukach; wieża z wiśniami (21) w podziękowaniu po RSVP; tło baby blue. Tort (22) — na razie nieużyty
+✅ v2.4 (23.10, faza 4 — runda 1): hero „Będzie ślub!” + większe imiona/data, drzewo (ceremonia) od krawędzi do krawędzi; „Drodzy Goście” bez bukietów; wcięte rogi (maska CSS) na kalendarzu, RSVP i przyciskach; w kalendarzu samo odręczne kółko; nowa sekcja klimat + stodoła na całą szerokość + paleta strojów (9 kropek, dodane Granat #3F5A7E i Wiśniowy #9E2B3A); plan dnia = strużka z butelki (Canva 5) do kieliszka (Canva 2), 9 punktów na przemian; „Miejsce” bez ilustracji. Wrota i bukiety w łukach usunięte ze strony (pliki zostają).
+⏭️ Później: kula disco i inne ilustracje przy planie dnia.
 ⏭️ Następne kroki: (2) poprawki wizualne (faza 4) → (3) data, plan dnia, prawdziwa lista gości → (4) domena.
 
 ### ⚠️ Znane atrapy
