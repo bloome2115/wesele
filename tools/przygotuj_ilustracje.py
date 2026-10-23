@@ -12,8 +12,11 @@ MAP = {
     9:  ('ceremonia', 1000, 70), 10: ('stodola', 1000, 70), 11: ('bus', 640, 75),
     12: ('bar', 720, 70), 13: ('wrota', 1000, 70), 14: ('sala_lampki', 720, 70),
     15: ('kwiaty_beczka', 640, 70), 16: ('kwiaty_skrzynia', 640, 70), 17: ('kurtyna', 720, 70),
-    18: ('sala', 1100, 70), 19: ('monogram', 640, 90),
+    18: ('sala', 1100, 70),
+    20: ('monogram', 640, 90), 21: ('wieza_wisnie', 640, 72), 22: ('tort', 640, 72),
+    23: ('bukiet_1', 640, 70), 24: ('bukiet_2', 640, 70),
 }
+ONLY = {int(x) for x in sys.argv[3:]}  # opcjonalnie: tylko wybrane numery
 KEEP_ALPHA = {'monogram'}
 src, dst = sys.argv[1], sys.argv[2]
 os.makedirs(dst, exist_ok=True)
@@ -32,6 +35,7 @@ def trim(im, pad=0.01):
     return im.crop((max(0, bb[0]-p), max(0, bb[1]-p), min(im.width, bb[2]+p), min(im.height, bb[3]+p)))
 
 for num, (name, mw, q) in MAP.items():
+    if ONLY and num not in ONLY: continue
     f = os.path.join(src, f'{num}.png')
     if not os.path.exists(f): print('brak', f); continue
     out = trim(ink(Image.open(f)))
@@ -40,6 +44,3 @@ for num, (name, mw, q) in MAP.items():
         bg = Image.new('RGB', out.size, (255, 255, 255)); bg.paste(out, (0, 0), out); out = bg
     p = os.path.join(dst, name + '.webp'); out.save(p, 'WEBP', quality=q, method=4)
     print(f'{name:16s} {out.size}  {os.path.getsize(p)//1024} KB')
-    if name == 'monogram':   # wisienki z lewego górnego rogu monogramu — ozdobnik
-        ch = trim(out.crop((int(out.width * 0.08), 0, int(out.width * 0.3), int(out.height * 0.42))), 0.02)
-        ch.save(os.path.join(dst, 'wisnie.webp'), 'WEBP', quality=90, method=4); print('wisnie', ch.size)

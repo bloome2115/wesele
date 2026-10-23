@@ -19,7 +19,7 @@
    UWAGA: przodek sceny nie może mieć transform/opacity (izoluje mieszanie) — animujemy same obrazki.
    Świadomie jeden, jasny „papierowy” motyw — kolory ustawione jawnie. */
 :root{
-  --linen:#E9E0D4;
+  --linen:#CFE0EE; /* baby blue — tło poza kartką (widoczne na komputerze) */
   --paper:#FAF6EF;
   --card:#FFFDF9;
   --ink:#2C1B1E;
@@ -39,7 +39,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--linen);color:var(--ink);font-family:var(--f-body);font-size:1.125rem;line-height:1.6;-webkit-font-smoothing:antialiased;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .3 0 0 0 0 .28 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .4 0 0 0 0 .5 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 img{max-width:100%;height:auto;display:block}
 [hidden]{display:none!important}
 a{color:var(--wine);text-underline-offset:3px;text-decoration-thickness:1px}
@@ -159,7 +159,13 @@ a{color:var(--wine);text-underline-offset:3px;text-decoration-thickness:1px}
 .info img.bus{width:min(280px,82%);margin-bottom:8px}
 .info h3{margin:6px 0 0}
 .info p{margin:0}
-.flowers{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:6px;max-width:460px;margin:0 auto -10px;padding:0 24px}
+.flowers{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:0;max-width:420px;margin:10px auto -6px;padding:0 30px}
+.flowers .b1{transform:rotate(-9deg) translateX(10%)}
+.flowers .b2{transform:rotate(9deg) translateX(-10%)}
+/* dwa łuki z kwiatami nad „Drodzy Goście” — ucięte bukiety tylko w ramkach */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:380px;margin:0 auto 34px}
+.duo .arch{aspect-ratio:3/4}
+.duo .arch img{object-position:50% 20%}
 
 /* ---------- RSVP ---------- */
 .rsvpcard{position:relative;background:var(--card);margin:34px auto 0;max-width:520px;padding:clamp(34px,7vw,50px) clamp(20px,6vw,40px) clamp(30px,6vw,42px);text-align:left;border:1px solid var(--line);outline:1px solid var(--line);outline-offset:-8px}
@@ -217,7 +223,7 @@ textarea{min-height:80px;resize:vertical;border:1px solid rgba(44,27,30,.2);padd
 
   <!-- ============ HERO ============ -->
   <header class="hero" id="hero">
-    <img class="mono" src="assets/img/monogram.webp" alt="Monogram Z i D z wisienkami" width="640" height="323">
+    <img class="mono" src="assets/img/monogram.webp" alt="Monogram Z i D z wisienkami" width="640" height="327">
     <p class="kicker">Z radością zapraszamy na nasz ślub</p>
     <h1 class="names"><span>Zuzia</span><span class="amp">&amp;</span><span>Daniel</span></h1>
     <p class="hdate" id="hdate"></p>
@@ -230,6 +236,10 @@ textarea{min-height:80px;resize:vertical;border:1px solid rgba(44,27,30,.2);padd
 
   <!-- ============ SŁOWO OD NAS ============ -->
   <section class="sec" id="zaproszenie" style="padding-top:12px">
+    <div class="duo">
+      <div class="arch-w"><div class="arch"><img class="scene rvi" src="assets/img/kwiaty_beczka.webp" alt="" loading="lazy"></div></div>
+      <div class="arch-w"><div class="arch"><img class="scene rvi" src="assets/img/kwiaty_skrzynia.webp" alt="" loading="lazy"></div></div>
+    </div>
     <div class="rv">
       <p class="eyebrow">Zaproszenie</p>
       <h2 class="script">Drodzy Goście</h2>
@@ -298,8 +308,8 @@ textarea{min-height:80px;resize:vertical;border:1px solid rgba(44,27,30,.2);padd
   </section>
 
   <div class="flowers" aria-hidden="true">
-    <img class="scene rvi" src="assets/img/kwiaty_beczka.webp" alt="" width="640" height="812" loading="lazy">
-    <img class="scene rvi" src="assets/img/kwiaty_skrzynia.webp" alt="" width="640" height="812" loading="lazy">
+    <img class="scene rvi b1" src="assets/img/bukiet_1.webp" alt="" width="640" height="694" loading="lazy">
+    <img class="scene rvi b2" src="assets/img/bukiet_2.webp" alt="" width="640" height="763" loading="lazy">
   </div>
 
   <!-- ============ RSVP ============ -->
@@ -333,10 +343,10 @@ textarea{min-height:80px;resize:vertical;border:1px solid rgba(44,27,30,.2);padd
 <script>
 /* ===================== USTAWIENIA — edytujcie tutaj ===================== */
 const CONFIG = {
-  // Data i godzina ceremonii (strefa PL). UZUPEŁNIJCIE PRAWDZIWĄ DATĘ:
-  date: "2027-06-26T17:00:00+02:00",
+  // Data i godzina ceremonii (strefa PL):
+  date: "2027-07-24T17:00:00+02:00",
   // Do kiedy prosimy o odpowiedź:
-  rsvpDeadline: "2027-05-15",
+  rsvpDeadline: "2027-06-12",
   // Adres Web App z Google Apps Script (pusty = tryb podglądu z przykładowymi gośćmi):
   scriptUrl: "https://script.google.com/macros/s/AKfycbzutSkN6sQRdFNJUhnjMvsrxab08qgzFaAYwWWCz9CJoZRSv-T4FKmZ3fJZOramuAAh/exec",
   // Plan dnia — img: nazwa sceny z assets/img (bez .webp)
@@ -623,7 +633,7 @@ function renderSummary(){
   };
   view.innerHTML = `
     <div class="ask">
-      <img class="mono-s" src="assets/img/monogram.webp" alt="">
+      <img class="scene" src="assets/img/wieza_wisnie.webp" alt="" style="width:150px;margin:0 auto">
       <p>Dziękujemy! Odpowiedzi są zapisane.</p>
     </div>
     <ul class="summary">${S.members.map(m => `<li><b>${esc(nameOf(m))}</b><button class="linkbtn" data-id="${esc(m.id)}">zmień</button>${line(m)}</li>`).join("")}</ul>

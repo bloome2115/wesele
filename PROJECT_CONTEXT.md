@@ -1,6 +1,6 @@
 # PROJECT_CONTEXT — Strona na Wesele (Zuzia & Daniel)
 
-**Wersja 2.1 — 22.10.2026**
+**Wersja 2.2 — 23.10.2026**
 
 ## 1. Opis projektu
 Strona dla zaproszonych gości: informacje o ślubie i weselu + potwierdzenie obecności (RSVP) z danymi o transporcie, noclegu, diecie, osobach towarzyszących i dzieciach.
@@ -12,7 +12,7 @@ Strona dla zaproszonych gości: informacje o ślubie i weselu + potwierdzenie ob
 | Para | Zuzia & Daniel (zawsze w tej kolejności) |
 | Miejsce (ceremonia + przyjęcie) | Lipniak 8, Krzczonów |
 | Godzina ceremonii | 17:00 |
-| Data | ⚠️ do uzupełnienia |
+| Data | sobota, 24.07.2027 |
 | Kontakt na stronie | +48 790 744 200 |
 
 ## 3. Design i styl
@@ -26,7 +26,7 @@ Styl zaproszeń z inspiracji (Project files): kremowy papier, czerwone ręcznie 
 | `--ink` | `#2B1E1C` | tekst |
 | `--muted` | `#76665F` | tekst pomocniczy |
 | `--wine` | `#7A2434` | ilustracje (ujednolicone skryptem), akcenty, przyciski, pasmo |
-| `--linen` | `#E9E0D4` | tło poza kartką |
+| `--linen` | `#CFE0EE` | baby blue — tło poza kartką (komputer) |
 
 Fonty: Bodoni Moda (imiona, nagłówki), EB Garamond (tekst), Pinyon Script (ozdobne).
 Grafiki: ⚠️ obecnie tymczasowe SVG rysowane przez Claude → do podmiany na grafiki z Canva Premium.
@@ -65,13 +65,13 @@ Pusty `CONFIG.scriptUrl` = tryb podglądu z przykładowymi gośćmi (nic nie zap
 ✅ v2.0: nowy projekt strony — koperta z pieczęcią, ilustracje z Canvy (kolor wina #7A2434), odliczanie z sekundami, kalendarz z zaznaczoną datą, „Dodaj do kalendarza”, rysunki prawdziwego miejsca
 ✅ Ilustracje w pełnej rozdzielczości (eksport PNG ×2 → `tools/przygotuj_ilustracje.py` → WebP)
 ✅ v2.1 (22.10): bez koperty i bez ilustracji pojedynczych przedmiotów; tylko sceny z Lipniaka (Canva 9–18) + monogram ZD z wisienkami (19); wejście = monogram wyostrza się, imiona się rozsuwają; plan dnia w łukowych „oknach”; sceny jako WebP na białym tle + mix-blend-mode: multiply (≈1 MB łącznie)
+✅ v2.2 (23.10): data 24.07.2027; nowy monogram (wyraźniejsze wiśnie, Canva 20); całe bukiety (23, 24) swobodnie, ucięte (15, 16) tylko w łukach; wieża z wiśniami (21) w podziękowaniu po RSVP; tło baby blue. Tort (22) — na razie nieużyty
 ⏭️ Następne kroki: (2) poprawki wizualne (faza 4) → (3) data, plan dnia, prawdziwa lista gości → (4) domena.
 
 ### ⚠️ Znane atrapy
 | Atrapa | Gdzie | Stan |
 |---|---|---|
-| Data ślubu `2027-06-26` | `index.html` → `CONFIG.date` | przykładowa |
-| Termin RSVP `2027-05-15` | `CONFIG.rsvpDeadline` | przykładowy |
+| Termin RSVP `2027-06-12` | `CONFIG.rsvpDeadline` | przykładowy — do potwierdzenia |
 | Plan dnia (poza 17:00) | `CONFIG.schedule` | ogólne punkty bez godzin |
 | Przykładowi goście (Kowalscy, Nowak) | Arkusz „Goście” | do zastąpienia prawdziwą listą |
 | Tekst „Drodzy Goście” | sekcja #zaproszenie | ogólny, do napisania przez Was |
