@@ -45,3 +45,17 @@ for num, (name, mw, q) in MAP.items():
         bg = Image.new('RGB', out.size, (255, 255, 255)); bg.paste(out, (0, 0), out); out = bg
     p = os.path.join(dst, name + '.webp'); out.save(p, 'WEBP', quality=q, method=4)
     print(f'{name:16s} {out.size}  {os.path.getsize(p)//1024} KB')
+
+# 25: butelka nalewająca do kieliszka — tniemy na górę (butelka) i dół (kieliszek na tacy);
+# strużkę między nimi rysuje strona (SVG), żeby dopasować ją do długości planu dnia.
+# Okno w poziomie: 30–70% szerokości (środek okna = środek strużki).
+if not ONLY or 25 in ONLY:
+    f = os.path.join(src, '25.png')
+    if os.path.exists(f):
+        full = ink(Image.open(f)); Wd, Hd = full.size
+        x0, x1 = int(Wd * .30), int(Wd * .70)
+        for nm, (y0, y1) in {'nalewanie_gora': (0, .165), 'nalewanie_dol': (.705, 1.0)}.items():
+            part = full.crop((x0, int(Hd * y0), x1, int(Hd * y1)))
+            part = part.resize((600, round(part.height * 600 / part.width)), Image.LANCZOS)
+            p = os.path.join(dst, nm + '.webp'); part.save(p, 'WEBP', quality=88, method=4)
+            print(f'{nm:16s} {part.size}  {os.path.getsize(p)//1024} KB')

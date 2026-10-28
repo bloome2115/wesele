@@ -146,21 +146,17 @@ a{color:var(--wine);text-underline-offset:3px;text-decoration-thickness:1px}
 .mood{font-family:var(--f-body);font-style:italic;color:var(--wine);font-size:clamp(1.45rem,6vw,1.85rem);line-height:1.35;max-width:24ch;margin:0 auto;text-wrap:balance}
 #klimat .bleed{margin-top:36px;margin-bottom:30px}
 .dress{max-width:36ch;margin:0 auto;font-size:1.3rem;line-height:1.55}
-.palette{list-style:none;margin:34px auto 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:22px 6px;max-width:360px}
-@media (min-width:520px){.palette{max-width:520px}}
-.palette li{width:96px}
-.palette li{display:grid;justify-items:center;gap:8px}
-.dot{width:58px;aspect-ratio:1;border-radius:49% 51% 47% 53% / 52% 48% 52% 48%;background:var(--c);position:relative;overflow:hidden;
-  box-shadow:inset 0 -4px 8px rgba(0,0,0,.08),inset 0 3px 6px rgba(255,255,255,.25)}
-.dot::after{content:"";position:absolute;inset:0;opacity:.35;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.palette span{font-family:var(--f-display);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);line-height:1.2}
+.palette{--d:clamp(38px,11vw,66px);list-style:none;margin:36px auto 0;padding:0 0 0 calc(var(--d) * .24);display:flex;justify-content:center}
+.palette li{width:var(--d);aspect-ratio:1;border-radius:50%;background:var(--c);margin-left:calc(var(--d) * -.24);position:relative}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* ---------- plan dnia: strużka z butelki do kieliszka ---------- */
-.pour{position:relative;max-width:520px;margin:6px auto 0;padding:190px 0 210px}
-.pour .bottle{position:absolute;width:62px;top:-18px;left:calc(50% - 92px);transform:rotate(135deg);transform-origin:50% 50%}
-.pour .glass{position:absolute;width:130px;bottom:0;left:calc(50% - 58px)}
+.pour{--iw:min(300px,78vw);position:relative;max-width:520px;margin:6px auto 0;padding:calc(var(--iw) * .515 + 36px) 0 calc(var(--iw) * .922 + 20px)}
+.pour .top,.pour .bottom{position:absolute;width:var(--iw);left:calc(50% - var(--iw) / 2)}
+.pour .top{top:0}
+.pour .bottom{bottom:0}
 .stream{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
-.stream path{fill:none;stroke:var(--wine);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0}
+.stream path{fill:none;stroke:var(--wine);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0}
 .stream circle{fill:var(--wine)}
 .armed .pour .stream path{stroke-dashoffset:1;transition:stroke-dashoffset 3.2s cubic-bezier(.45,.05,.4,1)}
 .armed .pour.on .stream path{stroke-dashoffset:0}
@@ -284,6 +280,13 @@ textarea{min-height:80px;resize:vertical;border:1px solid rgba(44,27,30,.2);padd
   <!-- ============ KLIMAT I STROJE ============ -->
   <section class="sec" id="klimat">
     <p class="mood rv">Świętujemy w sielskim stylu — w klimatycznej stodole, blisko natury i z dużą dawką swobody.</p>
+    <div class="rv" style="margin-top:44px">
+      <p class="eyebrow">Miejsce</p>
+      <h2 class="script">Lipniak</h2>
+      <p class="addr">Lipniak 8 · Krzczonów</p>
+      <p class="place-note">Ceremonia i przyjęcie odbywają się w tym samym miejscu.</p>
+      <p style="margin:26px 0 0"><a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Lipniak%208%2C%20Krzczon%C3%B3w" target="_blank" rel="noopener">Pokaż na mapie</a></p>
+    </div>
     <img class="scene bleed rvi" src="assets/img/stodola.webp" alt="Rysunek: stodoła z zadaszonym tarasem wśród łąki" width="1000" height="871" loading="lazy">
     <p class="dress rv">Wybierzcie stroje, w których będziecie czuć się pięknie i komfortowo, pamiętając, że część uroczystości i zabawy odbędzie się na świeżym powietrzu.</p>
     <ul class="palette rv" id="palette" aria-label="Przykładowa paleta kolorów strojów"></ul>
@@ -296,21 +299,10 @@ textarea{min-height:80px;resize:vertical;border:1px solid rgba(44,27,30,.2);padd
     <h2 class="script rv">Plan dnia</h2>
     <div class="pour" id="pour">
       <svg class="stream" id="stream" aria-hidden="true"></svg>
-      <img class="bottle" src="assets/img/butelka.webp" alt="" width="360" height="1083">
+      <img class="top" src="assets/img/nalewanie_gora.webp" alt="" width="600" height="309">
       <ol class="tl" id="timeline"></ol>
-      <img class="glass" src="assets/img/kieliszek.webp" alt="" width="480" height="499">
+      <img class="bottom" src="assets/img/nalewanie_dol.webp" alt="" width="600" height="553">
     </div>
-  </section>
-
-  <!-- ============ MIEJSCE ============ -->
-  <section class="sec" id="miejsce" style="padding-top:20px">
-    <div class="rv">
-      <p class="eyebrow">Miejsce</p>
-      <h2 class="script">Lipniak</h2>
-      <p class="addr">Lipniak 8 · Krzczonów</p>
-      <p class="place-note">Ceremonia i przyjęcie odbywają się w tym samym miejscu.</p>
-    </div>
-    <p style="margin-top:28px"><a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Lipniak%208%2C%20Krzczon%C3%B3w" target="_blank" rel="noopener">Pokaż na mapie</a></p>
   </section>
 
   <!-- ============ DOJAZD I NOCLEG ============ -->
@@ -384,9 +376,9 @@ const CONFIG = {
   ],
   // Paleta strojów (kropki)
   palette: [
-    ["Błękit", "#B7CDE8"], ["Liliowy", "#C8B6DD"], ["Róż mauve", "#C99AAE"],
+    ["Granat", "#3F5A7E"], ["Błękit", "#B7CDE8"], ["Liliowy", "#C8B6DD"], ["Róż mauve", "#C99AAE"],
     ["Szałwia", "#B8BE96"], ["Oliwka", "#8F8F5F"], ["Maślany", "#F2DD8C"],
-    ["Brzoskwinia", "#E2956D"], ["Granat", "#3F5A7E"], ["Wiśniowy", "#9E2B3A"]
+    ["Brzoskwinia", "#E2956D"], ["Wiśniowy", "#9E2B3A"]
   ]
 };
 /* ======================================================================= */
@@ -455,32 +447,36 @@ $("#calYear").textContent = Y;
 })();
 
 /* ---------- paleta ---------- */
-$("#palette").innerHTML = CONFIG.palette.map(([n, c]) => `<li><i class="dot" style="--c:${c}"></i><span>${esc(n)}</span></li>`).join("");
+$("#palette").innerHTML = CONFIG.palette.map(([n, c]) => `<li style="--c:${c}" title="${esc(n)}"><span class="sr">${esc(n)}</span></li>`).join("");
 
 /* ---------- plan dnia: strużka z butelki do kieliszka ---------- */
 $("#timeline").innerHTML = CONFIG.schedule.map(s => `<li${s.big ? ' class="big"' : ""}>
   ${s.t ? `<span class="t">${esc(s.t)}</span>` : ""}<b>${esc(s.title)}</b><span class="n">${esc(s.note)}</span></li>`).join("");
 function drawStream(){
-  const box = $("#pour"), svg = $("#stream"), bottle = box.querySelector(".bottle"), glass = box.querySelector(".glass");
+  const box = $("#pour"), svg = $("#stream"), top = box.querySelector(".top"), bot = box.querySelector(".bottom");
   const W = box.clientWidth, H = box.clientHeight, cx = W / 2;
   svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-  // wylot szyjki: środek butelki + obrót 135° punktu (0, -h/2)
-  const bw = bottle.offsetWidth, bh = bottle.offsetHeight;
-  const bcx = bottle.offsetLeft + bw / 2, bcy = bottle.offsetTop + bh / 2;
-  const a = 135 * Math.PI / 180, tip = [bcx + (bh / 2 - 2) * Math.sin(a), bcy - (bh / 2 - 2) * Math.cos(a)];
-  const nodes = [...box.querySelectorAll(".tl li")].map(li => [cx, li.offsetTop + li.offsetHeight / 2 + box.querySelector(".tl").offsetTop]);
-  const end = [glass.offsetLeft + glass.offsetWidth * 0.47, glass.offsetTop + glass.offsetHeight * 0.3];
+  // wylot szyjki i wlot kieliszka — ułamki wymiarów wyciętych rysunków (Canva 25)
+  const tip = [top.offsetLeft + top.offsetWidth * .49, top.offsetTop + top.offsetHeight * .9];
+  const end = [bot.offsetLeft + bot.offsetWidth * .517, bot.offsetTop + bot.offsetHeight * .01];
+  const tl = box.querySelector(".tl");
+  const nodes = [...tl.querySelectorAll("li")].map(li => [cx, tl.offsetTop + li.offsetTop + li.offsetHeight / 2]);
   const pts = [tip, ...nodes, end];
-  const A = Math.min(24, W * 0.06);
+  const A = Math.min(22, W * 0.055);
   let d = `M${tip[0].toFixed(1)} ${tip[1].toFixed(1)}`, s = 1;
   for (let i = 1; i < pts.length; i++){
     const [x1, y1] = pts[i - 1], [x2, y2] = pts[i], dy = y2 - y1;
     d += ` C${(x1 + s * A).toFixed(1)} ${(y1 + dy * .4).toFixed(1)} ${(x2 + s * A).toFixed(1)} ${(y2 - dy * .4).toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
+    // co drugi punkt: mała pętelka, jak na rysunku
+    if (i < pts.length - 1 && i % 2 === 0) d += ` a5 5 0 1 ${s > 0 ? 1 : 0} 0.1 0`;
     s = -s;
   }
-  // kropelki przy punktach (po stronie tekstu) i nad kieliszkiem
-  const dots = nodes.map(([x, y], i) => `<circle cx="${x + (i % 2 ? -15 : 15)}" cy="${y - 6}" r="2.6"/>`).join("") +
-    [[-9, -22], [7, -34], [-3, -48]].map(([dx, dy]) => `<circle cx="${end[0] + dx}" cy="${end[1] + dy}" r="2.2"/>`).join("");
+  // kropelki tylko w wąskim pasie przy strużce (tekst zaczyna się 32 px od środka)
+  let dots = "";
+  for (let i = 0; i < pts.length - 1; i++){
+    const y = (pts[i][1] + pts[i + 1][1]) / 2, k = i % 2 ? 1 : -1;
+    dots += `<circle cx="${cx - k * (A * .45 + 9)}" cy="${y - 10}" r="1.9"/><circle cx="${cx - k * (A * .45 + 5)}" cy="${y + 12}" r="1.4"/>`;
+  }
   svg.innerHTML = `<path pathLength="1" d="${d}"/>` + dots;
 }
 drawStream();
