@@ -54,7 +54,10 @@ if not ONLY or 25 in ONLY:
     if os.path.exists(f):
         full = ink(Image.open(f)); Wd, Hd = full.size
         x0, x1 = int(Wd * .30), int(Wd * .70)
-        for nm, (y0, y1) in {'nalewanie_gora': (0, .165), 'nalewanie_dol': (.705, 1.0)}.items():
+        # cały rysunek, przycięty w poziomie do 20–80% (puste boki), pod nakładany tekst planu dnia
+        whole = full.crop((int(Wd * .2), 0, int(Wd * .8), Hd)); whole = whole.resize((900, round(whole.height * 900 / whole.width)), Image.LANCZOS)
+        p = os.path.join(dst, 'nalewanie.webp'); whole.save(p, 'WEBP', quality=88, method=4); print('nalewanie', whole.size, os.path.getsize(p)//1024, 'KB')
+        for nm, (y0, y1) in {}.items():
             part = full.crop((x0, int(Hd * y0), x1, int(Hd * y1)))
             part = part.resize((600, round(part.height * 600 / part.width)), Image.LANCZOS)
             p = os.path.join(dst, nm + '.webp'); part.save(p, 'WEBP', quality=88, method=4)

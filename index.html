@@ -150,26 +150,20 @@ a{color:var(--wine);text-underline-offset:3px;text-decoration-thickness:1px}
 .palette li{width:var(--d);aspect-ratio:1;border-radius:50%;background:var(--c);margin-left:calc(var(--d) * -.24);position:relative}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* ---------- plan dnia: strużka z butelki do kieliszka ---------- */
-.pour{--iw:min(300px,78vw);position:relative;max-width:520px;margin:6px auto 0;padding:calc(var(--iw) * .515 + 36px) 0 calc(var(--iw) * .922 + 20px)}
-.pour .top,.pour .bottom{position:absolute;width:var(--iw);left:calc(50% - var(--iw) / 2)}
-.pour .top{top:0}
-.pour .bottom{bottom:0}
-.stream{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
-.stream path{fill:none;stroke:var(--wine);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0}
-.stream circle{fill:var(--wine)}
-.armed .pour .stream path{stroke-dashoffset:1;transition:stroke-dashoffset 3.2s cubic-bezier(.45,.05,.4,1)}
-.armed .pour.on .stream path{stroke-dashoffset:0}
-.tl{list-style:none;margin:0;padding:0;display:grid;gap:30px;position:relative}
-.tl li{width:50%;display:grid;gap:2px;align-content:center;min-height:56px}
-.tl li:nth-child(odd){margin-left:50%;padding-left:32px;text-align:left;justify-items:start}
-.tl li:nth-child(even){padding-right:32px;text-align:right;justify-items:end}
-.tl .t{font-family:var(--f-display);color:var(--wine);font-size:1.15rem;line-height:1;letter-spacing:.06em}
-.tl b{font-family:var(--f-display);font-weight:400;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(1rem,4.2vw,1.2rem);line-height:1.2}
-.tl .n{font-family:var(--f-script);color:var(--wine);font-size:clamp(1.15rem,4.8vw,1.35rem);line-height:1.15}
-.tl li.big b{font-size:clamp(1.3rem,5.6vw,1.6rem)}
-.tl li.big .n{font-size:clamp(1.3rem,5.4vw,1.55rem)}
-.armed .tl li{opacity:0;transition:opacity .9s var(--ease)}
+/* ---------- plan dnia: tekst nałożony na rysunek strużki szampana (Canva 25) ---------- */
+.pour{position:relative;width:calc(100% + 2 * var(--g,24px));margin:10px calc(-1 * var(--g,24px)) 0}
+@media (min-width:600px){.pour{width:540px;margin-inline:auto}}
+.pour > img{width:100%}
+.tl{list-style:none;margin:0;padding:0;position:absolute;inset:0}
+.tl li{position:absolute;width:40%;transform:translateY(-50%);display:grid;gap:1px}
+.tl li.r{left:58%;text-align:left;justify-items:start}
+.tl li.l{right:58%;text-align:right;justify-items:end}
+.tl b{font-family:var(--f-display);font-weight:400;text-transform:uppercase;letter-spacing:.06em;font-size:clamp(.9rem,3.7vw,1.15rem);line-height:1.15}
+.tl b .t{color:var(--wine);margin-right:.35em}
+.tl li.l b .t{margin:0 0 0 .35em}
+.tl .n{font-family:var(--f-script);color:var(--wine);font-size:clamp(1rem,4.2vw,1.3rem);line-height:1.1}
+.tl li.big b{font-size:clamp(1rem,4.1vw,1.45rem)}
+.armed .tl li{opacity:0;transition:opacity .8s var(--ease)}
 .armed .pour.on .tl li{opacity:1}
 
 /* ---------- miejsce ---------- */
@@ -298,10 +292,8 @@ textarea{min-height:80px;resize:vertical;border:1px solid rgba(44,27,30,.2);padd
   <section class="sec" id="plan">
     <h2 class="script rv">Plan dnia</h2>
     <div class="pour" id="pour">
-      <svg class="stream" id="stream" aria-hidden="true"></svg>
-      <img class="top" src="assets/img/nalewanie_gora.webp" alt="" width="600" height="309">
+      <img src="assets/img/nalewanie.webp" alt="Rysunek: szampan nalewany z butelki do kieliszka na tacy" width="900" height="1875" loading="lazy">
       <ol class="tl" id="timeline"></ol>
-      <img class="bottom" src="assets/img/nalewanie_dol.webp" alt="" width="600" height="553">
     </div>
   </section>
 
@@ -450,39 +442,14 @@ $("#calYear").textContent = Y;
 $("#palette").innerHTML = CONFIG.palette.map(([n, c]) => `<li style="--c:${c}" title="${esc(n)}"><span class="sr">${esc(n)}</span></li>`).join("");
 
 /* ---------- plan dnia: strużka z butelki do kieliszka ---------- */
-$("#timeline").innerHTML = CONFIG.schedule.map(s => `<li${s.big ? ' class="big"' : ""}>
-  ${s.t ? `<span class="t">${esc(s.t)}</span>` : ""}<b>${esc(s.title)}</b><span class="n">${esc(s.note)}</span></li>`).join("");
-function drawStream(){
-  const box = $("#pour"), svg = $("#stream"), top = box.querySelector(".top"), bot = box.querySelector(".bottom");
-  const W = box.clientWidth, H = box.clientHeight, cx = W / 2;
-  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-  // wylot szyjki i wlot kieliszka — ułamki wymiarów wyciętych rysunków (Canva 25)
-  const tip = [top.offsetLeft + top.offsetWidth * .49, top.offsetTop + top.offsetHeight * .9];
-  const end = [bot.offsetLeft + bot.offsetWidth * .517, bot.offsetTop + bot.offsetHeight * .01];
-  const tl = box.querySelector(".tl");
-  const nodes = [...tl.querySelectorAll("li")].map(li => [cx, tl.offsetTop + li.offsetTop + li.offsetHeight / 2]);
-  const pts = [tip, ...nodes, end];
-  const A = Math.min(22, W * 0.055);
-  let d = `M${tip[0].toFixed(1)} ${tip[1].toFixed(1)}`, s = 1;
-  for (let i = 1; i < pts.length; i++){
-    const [x1, y1] = pts[i - 1], [x2, y2] = pts[i], dy = y2 - y1;
-    d += ` C${(x1 + s * A).toFixed(1)} ${(y1 + dy * .4).toFixed(1)} ${(x2 + s * A).toFixed(1)} ${(y2 - dy * .4).toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
-    // co drugi punkt: mała pętelka, jak na rysunku
-    if (i < pts.length - 1 && i % 2 === 0) d += ` a5 5 0 1 ${s > 0 ? 1 : 0} 0.1 0`;
-    s = -s;
-  }
-  // kropelki tylko w wąskim pasie przy strużce (tekst zaczyna się 32 px od środka)
-  let dots = "";
-  for (let i = 0; i < pts.length - 1; i++){
-    const y = (pts[i][1] + pts[i + 1][1]) / 2, k = i % 2 ? 1 : -1;
-    dots += `<circle cx="${cx - k * (A * .45 + 9)}" cy="${y - 10}" r="1.9"/><circle cx="${cx - k * (A * .45 + 5)}" cy="${y + 12}" r="1.4"/>`;
-  }
-  svg.innerHTML = `<path pathLength="1" d="${d}"/>` + dots;
-}
-drawStream();
-if (document.fonts) document.fonts.ready.then(drawStream);
-window.addEventListener("load", drawStream);
-if ("ResizeObserver" in window) new ResizeObserver(drawStream).observe($("#pour"));
+// punkty rozłożone równo wzdłuż strużki: od 21,5% do 68,5% wysokości rysunku, na przemian prawo/lewo
+const Y0 = 21.5, Y1 = 68.5, N = CONFIG.schedule.length;
+$("#timeline").innerHTML = CONFIG.schedule.map((s, i) => {
+  const side = i % 2 ? "l" : "r", top = (Y0 + i * (Y1 - Y0) / Math.max(1, N - 1)).toFixed(2);
+  const t = s.t ? `<span class="t">${esc(s.t)}</span>` : "";
+  return `<li class="${side}${s.big ? " big" : ""}" style="top:${top}%">
+    <b>${side === "r" ? t + esc(s.title) : esc(s.title) + t}</b><span class="n">${esc(s.note)}</span></li>`;
+}).join("");
 
 /* ---------- kopiowanie numeru ---------- */
 $("#copyPhone").addEventListener("click", async e => {
